@@ -1,0 +1,61 @@
+#!/bin/sh
+
+# Use neovim for vim if present.
+[ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
+
+# Verbosity and settings that you pretty much just always are going to want.
+alias \
+	cp="cp -iv" \
+	mv="mv -iv" \
+	rm="rm -vI" \
+	mkd="mkdir -pv" \
+	yt="youtube-dl --add-metadata -i" \
+	ffmpeg="ffmpeg -hide_banner"
+
+# Easy configs access
+alias \
+	viz="nvim ~/.config/zsh/.zshrc" \
+	vizp="nvim ~/.zprofile" \
+	via="nvim ~/.config/aliasrc" \
+	sz="source ~/.config/zsh/.zshrc" \
+	szp="source ~/.zprofile" \
+	vit="nvim ~/.tmux.conf" \
+	vin="nvim ~/.config/nvim/init.vim"
+# Colorize commands when possible.
+alias \
+	ls="ls -hN --color=auto --group-directories-first" \
+	grep="grep --color=auto" \
+	diff="diff --color=auto" \
+	ccat="highlight --out-format=ansi" \
+	ll="ls -la"
+
+# These common commands are just too long! Abbreviate them.
+alias \
+	ka="killall" \
+	g="git" \
+	gs="git status" \
+	gp="git pull" \
+	gc="git checkout" \
+	gr="git rebase" \
+	gd="git describe" \
+	gb="git branch" \
+	glv="git log" \
+	gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative" \
+	szp="source ~/.zprofile" \
+	ga="git add" \
+	gcm="git commit" \
+	gcma="git commit --amend --no-edit" \
+	gpu="git push" \
+	gr="git reset" \
+	sdn="sudo shutdown -h now" \
+	f="$FILE" \
+	e="$EDITOR" \
+	v="$EDITOR" \
+	p="sudo pacman" \
+	xi="sudo xbps-install" \
+	xr="sudo xbps-remove -R" \
+	xq="xbps-query"
+
+gld() {
+	git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit HEAD~6..HEAD | awk '{system("git describe " $1 " |tr -d '\''\n'\''");$1="";print}'
+}

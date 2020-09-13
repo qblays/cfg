@@ -12,17 +12,23 @@ Plug 'neovim/nvim-lsp'
 Plug 'vimwiki/vimwiki'
 Plug 'zhou13/vim-easyescape'
 Plug 'atelierbram/vim-colors_atelier-schemes'
+
 Plug 'rakr/vim-one'
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
 Plug 'w0rp/ale'
 Plug 'machakann/vim-highlightedyank'
+Plug 'chrisbra/Colorizer'
 
 " Fuzzy finder
 Plug 'airblade/vim-rooter'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'justinmk/vim-sneak'
+
+
+Plug 'jlanzarotta/bufexplorer'
+
 let g:easyescape_chars = { "j": 1, "k": 1 }
 cnoremap jk <ESC>
 cnoremap kj <ESC>
@@ -50,6 +56,7 @@ set colorcolumn=100 " and give me a colored column
 set number
 set relativenumber
 
+set hidden
 set showcmd " Show (partial) command in status line.
 set mouse=a " Enable mouse usage (all modes) in terminals
 " jump to start and end of line with home row keys

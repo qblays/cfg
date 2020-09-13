@@ -1,0 +1,237 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+[global/wm]
+; Adjust the _NET_WM_STRUT_PARTIAL top value
+;   Used for top aligned bars
+;margin-bottom = 0
+
+; Adjust the _NET_WM_STRUT_PARTIAL bottom value
+;   Used for bottom aligned bars
+margin-top = 0
+
+;---------------------------------------
+;		COLORS
+;---------------------------------------
+
+[colors]
+nord0 = #2E3440
+nord1 = #3B4252
+nord2 = #434C5E
+nord3 = #4C566A
+nord4 = #D8DEE9
+nord5 = #E5E9F0
+nord6 = #ECEFF4
+nord7 = #8FBCBB
+nord8 = #88C0D0
+nord9 = #81A1C1
+nord10 = #5E81AC
+nord11 = #BF616A
+nord12 = #D08770
+nord13 = #EBCB8B
+nord14 = #A3BE8C
+nord15 = #B48EAD
+
+
+[bar/mybar]
+width = 100%
+height = 24 
+bottom = true
+line-size = 3
+
+background = ${colors.nord1}
+
+wm-restack = bspwm
+
+;---------------------------------------
+;		FONTS
+;---------------------------------------
+
+font-0 = JetBrains Mono:size=10;3
+font-1 = Material Design Icons Desktop:size=11;3
+
+;---------------------------------------
+;	     MODULES LAYOUT
+;---------------------------------------
+modules-right = memory cpu eth xkeyboard network pulseaudio battery date time volume
+modules-left = bspwm
+;---------------------------------------
+;	   KEYBOARD MODULE
+;---------------------------------------
+
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+
+format-prefix = " 󰌓 "
+format-foreground = ${colors.nord0}
+format-background = ${colors.nord9}
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+label = " 󰍛 %percentage:2%% "
+format-foreground = ${colors.nord0}
+format-background = ${colors.nord12}
+
+[module/memory]
+type = internal/memory
+interval = 2
+label = " 󰒋 %percentage_used:2%% "
+format-foreground = ${colors.nord0}
+format-background = ${colors.nord13}
+
+
+[module/eth]
+type = internal/network
+interface = vboxnet0
+interval = 3.0
+
+format-connected-underline = #55aa55
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.nord15}
+label-connected = %local_ip%
+
+format-disconnected =
+
+
+[module/bspwm]
+type = internal/bspwm
+
+label-focused = %index%
+label-focused-background = ${colors.nord0}
+label-focused-underline= ${colors.nord15}
+label-focused-padding = 2
+
+label-occupied = %index%
+label-occupied-padding = 2
+
+label-urgent = %index%!
+label-urgent-background = ${colors.nord3}
+label-urgent-padding = 2
+
+label-empty = %index%
+label-empty-foreground = ${colors.nord0}
+label-empty-padding = 2
+
+;---------------------------------------
+;	   DATE MODULE
+;---------------------------------------
+
+[module/date]
+type = internal/date
+
+interval = 60
+
+date = %a %d
+
+label = " 󰸗 %date% "
+format-foreground = ${colors.nord0}
+format-background = ${colors.nord10}
+
+;---------------------------------------
+;	   TIME MODULE
+;---------------------------------------
+[module/time]
+type = internal/date
+time = %H:%M
+
+label = "󰅐 %time%"
+
+format-foreground = ${colors.nord0}
+format-background = ${colors.nord15}
+format-padding = 1
+
+;---------------------------------------
+;	   BATTERY MODULE
+;---------------------------------------
+
+[module/battery]
+type = internal/battery
+
+battery = BAT1
+adapter = ACAD
+
+full-at = 99
+
+format-charging = <animation-charging> <label-charging>
+format-charging-foreground = ${colors.nord0}
+format-charging-background = ${colors.nord14}
+
+format-full = <label-full>
+format-full-foreground = ${colors.nord0}
+format-full-background = ${colors.nord14}
+
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-foreground = ${colors.nord0}
+format-discharging-background = ${colors.nord14}
+
+label-charging = "%percentage%% "
+label-discharging ="%percentage%% "
+label-discharging-foreground = ${colors.nord0}
+label-full = " 󱈑 %percentage%% "
+
+ramp-capacity-0 = " 󱊡"
+ramp-capacity-1 = " 󱊢"
+ramp-capacity-2 = " 󱊣"
+
+animation-charging-0 = " 󱊤"
+animation-charging-1 = " 󱊥"
+animation-charging-2 = " 󱊦"
+
+;---------------------------------------
+;	   AUDIO MODULE
+;---------------------------------------
+[module/pulseaudio]
+type = internal/pulseaudio
+sink = alsa_output.pci-0000_00_1f.3.analog-stereo
+
+label-volume = " 󰕾 %percentage%% "
+
+label-muted = " 󰖁 Mute "
+
+format-volume-foreground = ${colors.nord0}
+format-volume-background = ${colors.nord13}
+format-muted-foreground = ${colors.nord0}
+format-muted-background = ${colors.nord13}
+
+;---------------------------------------
+;	   NETWORK MODULE
+;---------------------------------------
+[module/network]
+type=internal/network
+interface = wlp0s20f3
+
+format-connected = <ramp-signal> <label-connected>
+format-disconnected = <label-disconnected>
+format-packetloss = "󰤫 "
+
+ramp-signal-0 = " 󰤯"
+ramp-signal-1 = " 󰤟"
+ramp-signal-2 = " 󰤢"
+ramp-signal-3 = " 󰤥"
+ramp-signal-4 = " 󰤨"
+
+label-disconnected = " 󰤮 Disconnected "
+:label-connected = " Connected "
+label-connected = "%essid% "
+
+format-connected-foreground = ${colors.nord0}
+format-connected-background = ${colors.nord12}
+format-disconnected-foreground = ${colors.nord0}
+format-disconnected-background = ${colors.nord12}
+

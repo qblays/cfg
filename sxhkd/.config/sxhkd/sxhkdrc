@@ -16,6 +16,9 @@ super + Escape
 
 super + l
 	rofi -combi-modi window,drun,ssh -show combi -show-icons
+
+super + n
+	xkb-switch -n
 #
 # bspwm hotkeys
 #

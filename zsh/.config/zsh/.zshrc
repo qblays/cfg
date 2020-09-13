@@ -97,6 +97,8 @@ zinit wait lucid for \
     zdharma/fast-syntax-highlighting \
  blockf \
     zsh-users/zsh-completions \
+ blockf \
+    kutsan/zsh-system-clipboard \
  atload"!_zsh_autosuggest_start" \
     zsh-users/zsh-autosuggestions
 

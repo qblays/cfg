@@ -8,7 +8,7 @@ syntax on
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'neovim/nvim-lsp'
+" Plug 'neovim/nvim-lsp'
 Plug 'vimwiki/vimwiki'
 Plug 'zhou13/vim-easyescape'
 Plug 'atelierbram/vim-colors_atelier-schemes'
@@ -21,7 +21,8 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'chrisbra/Colorizer'
 
 " Fuzzy finder
-Plug 'airblade/vim-rooter'
+" dir of vim is where .git located
+" Plug 'airblade/vim-rooter'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'justinmk/vim-sneak'
@@ -33,7 +34,7 @@ let g:easyescape_chars = { "j": 1, "k": 1 }
 cnoremap jk <ESC>
 cnoremap kj <ESC>
 call plug#end()
-lua require'nvim_lsp'.rust_analyzer.setup({})
+" lua require'nvim_lsp'.rust_analyzer.setup({})
 if (empty($TMUX))
   if (has("nvim"))
   "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
@@ -96,4 +97,6 @@ noremap <leader>p "+p
 noremap <leader>y "+y
 noremap <leader>d "+d
 " <leader>s for Rg search
+" root is cwd if true
+let g:rg_derive_root='true'
 noremap <leader>s :Rg

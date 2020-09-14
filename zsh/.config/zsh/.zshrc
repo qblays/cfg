@@ -36,6 +36,7 @@ export EDITOR='nvim'
 export BROWSER='google-chrome'
 export VISUAL='nvim'
 
+export tNavigator_INTERNALS_CHECK_RESTART=yes
 
 # Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char

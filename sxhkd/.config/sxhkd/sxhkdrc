@@ -19,6 +19,8 @@ super + l
 
 super + n
 	xkb-switch -n
+super + ctrl + s
+	screenshot
 #
 # bspwm hotkeys
 #

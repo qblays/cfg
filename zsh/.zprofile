@@ -131,7 +131,6 @@ ex=🎯:\
 *.java=♨:\
 "
 
-[ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc ] && shortcuts >/dev/null 2>&1 &
 
 
 # Switch escape and caps if tty and no passwd required:

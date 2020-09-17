@@ -7,3 +7,6 @@
 [submodule "tmux/.config/tmux/plugins/tpm"]
 	path = tmux/.config/tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
+[submodule "other/.local/bin/poly_pulseaudio"]
+	path = other/.local/bin/poly_pulseaudio
+	url = https://github.com/marioortizmanero/polybar-pulseaudio-control

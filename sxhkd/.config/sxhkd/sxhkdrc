@@ -21,6 +21,23 @@ super + n
 	xkb-switch -n
 super + ctrl + s
 	screenshot
+super + shift + y
+	D=$(bspc query --desktops --names --desktop focused); \ 
+	W=$(bspc query --nodes --node focused); \
+	bspc query --desktops --names | grep -q "'$D" || bspc monitor --add-desktops "'$D"; \
+	bspc node $W --to-desktop "'$D";
+super + ctrl + shift + y
+	D=$(bspc query --desktops --names --desktop focused); \
+	if [[ $(bspc query --desktops --names | grep "'$D") ]] \
+	then \
+		for i in $(bspc query --nodes --desktop "'$D"); do \
+			bspc node $i --to-desktop "$D"; \
+			break; \
+		done; \
+		bspc node $i --focus; \
+		bspc node --swap biggest; \
+		(( $(bspc query --nodes --desktop "'$D" | wc -l) )) || bspc desktop "'$D" --remove; \ 
+	fi;
 #
 # bspwm hotkeys
 #
@@ -88,9 +105,10 @@ super + {o,i}
 	bspc wm -h on
 
 # focus or send to the given desktop
-super + {_,shift + }{1-9,0}
+super + {_,shift +}{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
-
+super + ctrl + shift + {1-9,0}
+	bspc node -d '^{1-9,10}' --follow
 #
 # preselect
 #

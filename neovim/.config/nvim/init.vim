@@ -19,6 +19,7 @@ Plug 'itchyny/vim-gitbranch'
 Plug 'w0rp/ale'
 Plug 'machakann/vim-highlightedyank'
 Plug 'chrisbra/Colorizer'
+Plug 'baskerville/vim-sxhkdrc'
 
 " Fuzzy finder
 " dir of vim is where .git located

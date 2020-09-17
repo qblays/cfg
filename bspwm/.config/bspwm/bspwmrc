@@ -19,4 +19,8 @@ bspc rule -a Chromium desktop='^2'
 bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
+bspc rule -a Nm-connection-editor state=floating
+bspc rule -a zoom desktop='^10' state=floating follow=on
+bspc rule -a TeamViewer desktop='^10'
+bspc rule -a Google-chrome desktop='^1' follow=on
 $HOME/.config/polybar/launch.sh

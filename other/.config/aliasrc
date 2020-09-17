@@ -59,3 +59,7 @@ alias \
 gld() {
 	git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit HEAD~6..HEAD | awk '{system("git describe " $1 " |tr -d '\''\n'\''");$1="";print}'
 }
+
+function cpr() {
+	mkdir -p "$2" && cp "$1" "$2"
+}

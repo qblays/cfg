@@ -251,11 +251,25 @@ keycode 255 = XF86RFKill NoSymbol XF86RFKill
 ! We want to rewire caps lock and control keys
 clear      lock
 clear   control
-keycode      37 = Control_R NoSymbol Control_R  
+!keycode      37 = Control_R NoSymbol Control_R  
 ! Caps -> Control_L
 keycode      66 = Control_L NoSymbol Control_L
 ! Control_R stays
 keycode     105 = ISO_Next_Group 
 ! We apparently need to say that these are control keys?
 add     control = Control_L Control_R
-keycode      62 = Escape
+! Right alt to Escape
+keycode 108 = Escape Meta_R Escape Meta_R
+! Control_L to strange modifier
+!keycode 37 = ISO_Level3_Shift
+!keysym h = h H NoSymbol NoSymbol Left Left
+!keysym j = j J NoSymbol NoSymbol Down Down
+!keysym k = k K NoSymbol NoSymbol Up Up
+!keysym l = l L NoSymbol NoSymbol Right Right
+! use Right Shift for hjkl movements (see below)
+!keycode 62 = Mode_switch
+
+!keycode 43 = h H Left Left
+!keycode 44 = j J Down Down
+!keycode 45 = k K Up Up
+!keycode 46 = l L Right Right

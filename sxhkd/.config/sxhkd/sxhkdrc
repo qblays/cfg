@@ -4,11 +4,16 @@
 
 # terminal emulator
 super + Return
-	urxvt
+	alacritty
+# Add focused window to a tabbed instance in given direction
+super + p; {h,j,k,l}
+    tabc add {west,south,north,east} $(bspc query -N -n focused)
 
-# program launcher
-super + @space
-	dmenu_run
+# Remove one tab from tabbed
+super + p; r
+    tabbed=$(bspc query -N -n focused); \
+    child=$(tabc list $tabbed | head -n1); \
+    tabc remove $child
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -16,11 +21,17 @@ super + Escape
 
 super + l
 	rofi -combi-modi window,drun,ssh -show combi -show-icons
+super + k
+	rofi -modi drun -show drun -show-icons
 
-super + n
+alt + a
+	last_used_windows_rofi
+super + space
 	xkb-switch -n
 super + ctrl + s
 	screenshot
+super + ctrl + shift + s
+	screenshot_clip
 super + shift + y
 	D=$(bspc query --desktops --names --desktop focused); \ 
 	W=$(bspc query --nodes --node focused); \
@@ -83,26 +94,26 @@ super + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
 
 # focus the node for the given path jump
-super + {p,b,comma,period}
-	bspc node -f @{parent,brother,first,second}
+# super + {p,b,comma,period}
+# 	bspc node -f @{parent,brother,first,second}
 
 # focus the next/previous window in the current desktop
-super + {_,shift + }c
+super + {_,shift + }grave
 	bspc node -f {next,prev}.local.!hidden.window
 
+alt + {_,shift + }grave
+	bspc node -f {next,prev}.local.!hidden.window
 # focus the next/previous desktop in the current monitor
 super + bracket{left,right}
 	bspc desktop -f {prev,next}.local
 
 # focus the last node/desktop
-super + {grave,Tab}
-	bspc {node,desktop} -f last
+alt + {Tab}
+	bspc {node} -f last
 
 # focus the older or newer node in the focus history
 super + {o,i}
-	bspc wm -h off; \
-	bspc node {older,newer} -f; \
-	bspc wm -h on
+	bspc node {older,newer} -f;
 
 # focus or send to the given desktop
 super + {_,shift +}{1-9,0}
@@ -134,11 +145,11 @@ super + ctrl + shift + space
 #
 
 # expand a window by moving one of its side outward
-super + alt + {h,j,k,l}
+super + alt + {Left,Down,Up,Right}
 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 
 # contract a window by moving one of its side inward
-super + alt + shift + {h,j,k,l}
+super + alt + shift + {Left,Down,Up,Right}
 	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 
 # move a floating window

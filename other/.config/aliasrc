@@ -10,7 +10,7 @@ alias \
 	rm="rm -vI" \
 	mkd="mkdir -pv" \
 	yt="youtube-dl --add-metadata -i" \
-	ffmpeg="ffmpeg -hide_banner"
+	ffmpeg="ffmpeg -hide_banner" 
 
 # Easy configs access
 alias \

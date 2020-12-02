@@ -10,3 +10,9 @@
 [submodule "other/.local/bin/poly_pulseaudio"]
 	path = other/.local/bin/poly_pulseaudio
 	url = https://github.com/marioortizmanero/polybar-pulseaudio-control
+[submodule "vifm/.config/vifm/colors"]
+	path = vifm/.config/vifm/colors
+	url = https://github.com/vifm/vifm-colors
+[submodule "other/.local/bin/polywins"]
+	path = other/.local/bin/polywins
+	url = https://github.com/qblays/polywins.git

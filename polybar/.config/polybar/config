@@ -68,7 +68,7 @@ font-2 = JetBrains Mono:size=11:weight=medium;3
 ;---------------------------------------
 ;	     MODULES LAYOUT
 ;---------------------------------------
-modules-right = memory cpu eth network pulseaudio-control bluetooth battery xkeyboard date time volume
+modules-right = filesystem memory cpu eth network pulseaudio-control bluetooth battery xkeyboard date time volume
 modules-left = bspwm polybar-windows
 ;---------------------------------------
 ;	   KEYBOARD MODULE
@@ -82,13 +82,56 @@ label = %{T3}%output%%{T}
 label-padding = 1
 tail = true
 
+[module/filesystem]
+type = internal/fs
+
+; Mountpoints to display
+mount-0 = /
+
+; Seconds to sleep between updates
+; Default: 30
+interval = 10
+
+; Display fixed precision values
+; Default: false
+fixed-values = true
+
+; Spacing between entries
+; Default: 2
+spacing = 4
+format-mounted = " <label-mounted> "
+
+; Available tags:
+;   <label-unmounted> (default)
+format-unmounted = <label-unmounted>
+
+; Available tokens:
+;   %mountpoint%
+;   %type%
+;   %fsname%
+;   %percentage_free%
+;   %percentage_used%
+;   %total%
+;   %free%
+;   %used%
+; Default: %mountpoint% %percentage_free%%
+label-mounted = %mountpoint%: %free%
+format-mounted-foreground = ${colors.nord0}
+format-mounted-background = ${colors.nord11}
+
+
 [module/xkeyboard]
-type = internal/xkeyboard
-blacklist-0 = num lock
+type = custom/script
+exec = xkblayout-state print "%s"
+format = <label>
+label = " %{T3}%output%%{T} "
+;type = internal/xkeyboard
+;blacklist-0 = num lock
 
 format-prefix = " 󰌓 "
 format-foreground = ${colors.nord0}
 format-background = ${colors.nord9}
+interval = 0.1
 
 [module/cpu]
 type = internal/cpu

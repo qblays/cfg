@@ -40,6 +40,7 @@ export UNISON="${XDG_DATA_HOME:-$HOME/.local/share}/unison"
 export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/history"
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export GTK_USE_PORTAL=1
+export GTK_THEME=Adwaita:dark
 # Other program settings:
 export DICS="/usr/share/stardict/dic/"
 export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"

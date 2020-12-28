@@ -1,3 +1,5 @@
+" my config
+set previewoptions=graphicsdelay:0
 " vim: filetype=vifm :
 " Sample configuration file for vifm (last updated: 2 June, 2019)
 " You can edit this file by hand.

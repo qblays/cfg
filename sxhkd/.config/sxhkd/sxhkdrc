@@ -23,6 +23,8 @@ super + l
 	rofi -combi-modi window,drun,ssh -show combi -show-icons
 super + k
 	rofi -modi drun -show drun -show-icons
+super + o
+	i3lock -i ~/.config/wp/vsadnica-gory-zamok-reka.png
 
 alt + a
 	last_used_windows_rofi
@@ -32,6 +34,10 @@ super + ctrl + s
 	screenshot
 super + ctrl + shift + s
 	screenshot_clip
+super + ctrl + shift + d
+	screenshot_clip_qiv
+super + ctrl + g
+	make_gif
 super + shift + y
 	D=$(bspc query --desktops --names --desktop focused); \ 
 	W=$(bspc query --nodes --node focused); \

@@ -34,6 +34,8 @@ bindkey -v
 export KEYTIMEOUT=1
 bindkey  "^[[H"   beginning-of-line
 bindkey  "^[[F"   end-of-line
+bindkey  "^[[1~"   beginning-of-line
+bindkey  "^[[4~"   end-of-line
 bindkey  "^[[3~"  delete-char
 export EDITOR='nvim'
 export BROWSER='google-chrome'
@@ -88,8 +90,6 @@ bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
 
 bindkey '^[[P' delete-char
 if [[ -n $TMUX ]]; then
-	bindkey  "^[[1~"   beginning-of-line
-	bindkey  "^[[4~"   end-of-line
 	export NVIM_LISTEN_ADDRESS=/tmp/nvim_$USER_`tmux display -p "#{window_id}"`
 fi
 # Edit line in vim with ctrl-e:

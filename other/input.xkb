@@ -1669,13 +1669,10 @@ xkb_symbols "pc+us+ru(phonetic):2+inet(evdev)+terminate(ctrl_alt_bksp)" {
     modifier_map Mod1 { <META> };
     modifier_map Mod4 { <SUPR> };
     modifier_map Mod4 { <HYPR> };
-	key <LALT> {
-            type[Group1] = "ONE_LEVEL",
-            type[Group2] = "ONE_LEVEL",
-            symbols[Group1] = [ ISO_Level5_Shift ],
-            symbols[Group2] = [ ISO_Level5_Shift ]
+	key <META> {
+            symbols[Group1] = [ ISO_Level5_Shift ]
         };
-        modifier_map Mod1 { <LALT> };
+        modifier_map Mod1 { <META> };
         key <AC06> {
             type[Group1] = "EIGHT_LEVEL_SEMIALPHABETIC",
             type[Group2] = "EIGHT_LEVEL_SEMIALPHABETIC",

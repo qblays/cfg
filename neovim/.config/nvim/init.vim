@@ -8,8 +8,10 @@ Plug 'rakr/vim-one'
 Plug 'morhetz/gruvbox'
 Plug 'sainnhe/gruvbox-material'
 Plug 'atelierbram/vim-colors_atelier-schemes'
+Plug 'itchyny/lightline.vim'
+Plug 'sainnhe/tmuxline.vim'
 " programming
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'rust-lang/rust.vim'
@@ -18,10 +20,10 @@ if has('nvim-0.5')
 	Plug 'neovim/nvim-lspconfig'
 endif
 " utils
+Plug 'google/vim-searchindex'
 Plug 'vimwiki/vimwiki'
 Plug 'lervag/vimtex'
 Plug 'easymotion/vim-easymotion'
-Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
 Plug 'w0rp/ale'
 Plug 'machakann/vim-highlightedyank'
@@ -48,7 +50,6 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'psliwka/vim-smoothie'
 Plug 'mg979/vim-visual-multi'
 Plug 'preservim/tagbar'
-
 
 call plug#end()
 if (empty($TMUX))
@@ -80,6 +81,7 @@ endif
 "filetype plugin indent on
 set background=dark
 set termguicolors
+set guicursor=n-v-c:block-Cursor-blinkon0,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor,r-cr:hor20-Cursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
 set noexpandtab
 set tabstop=4
 set softtabstop=4
@@ -138,10 +140,12 @@ let g:go_highlight_chan_whitespace_error = 1
 highlight link goBuiltins Keyword
 
 
+let g:gruvbox_material_better_performance = 1
+let g:gruvbox_material_current_word = 'bold'
 let g:gruvbox_material_background = 'hard'
 let g:gruvbox_material_enable_italic = 1
 let g:gruvbox_material_enable_bold = 1
-"let g:gruvbox_material_transparent_background = 1
+let g:gruvbox_material_transparent_background = 0
 let g:gruvbox_material_palette = 'material'
 let g:gruvbox_material_diagnostic_line_highlight = 1
 let g:lightline = {
@@ -155,6 +159,21 @@ let g:lightline = {
 			\   'cocstatus': 'coc#status'
 			\ },
 			\ }
+let g:lightline.separator = { 'left': "\ue0bc", "\ue0ba": '' }
+let g:tmuxline_preset = {
+			\'a'    : ' #S ',
+            \'b'    : ' #W #F ',
+			\'win'  : [ ' #I #W '],
+			\'cwin' : [ ' #I #W '],
+			\'y'    : [ ' %Y-%m-%d ', ' %R ' ],
+			\'z'    : ' #H #{prefix_highlight}'
+			\}
+let g:tmuxline_separators = {
+			\ 'left' : "\ue0bc",
+			\ 'left_alt': "\ue0bd",
+			\ 'right' : "\ue0ba",
+			\ 'right_alt' : "\ue0bd",
+			\ 'space' : ''}
 colorscheme gruvbox-material
 " Permanent undo
 set undodir=~/.vimdid

@@ -69,7 +69,7 @@ font-2 = JetBrains Mono:size=11:weight=medium;3
 ;	     MODULES LAYOUT
 ;---------------------------------------
 modules-right = filesystem memory cpu eth network pulseaudio-control bluetooth battery xkeyboard date time volume
-modules-left = bspwm polybar-windows
+modules-left = ewmh polybar-windows
 ;---------------------------------------
 ;	   KEYBOARD MODULE
 ;---------------------------------------
@@ -162,6 +162,82 @@ label-connected = %{A1:nm-connection-editor:}%downspeed:9% %{A}
 click-left = nm-connection-editor &
 format-disconnected =
 
+[module/ewmh]
+type = internal/xworkspaces
+
+; Only show workspaces defined on the same output as the bar
+;
+; Useful if you want to show monitor specific workspaces
+; on different bars
+;
+; Default: false
+pin-workspaces = true
+
+; Create click handler used to focus desktop
+; Default: true
+enable-click = true
+
+; Create scroll handlers used to cycle desktops
+; Default: true
+enable-scroll = false
+
+; icon-[0-9]+ = <desktop-name>;<icon>
+; NOTE: The desktop name needs to match the name configured by the WM
+; You can get a list of the defined desktops using:
+; $ xprop -root _NET_DESKTOP_NAMES
+icon-0 = desktop 1;1
+icon-1 = desktop 2;2
+icon-2 = desktop 3;3
+icon-3 = desktop 4;4
+icon-4 = web;♞
+icon-default = H
+
+; Available tags:
+;   <label-monitor>
+;   <label-state> - gets replaced with <label-(active|urgent|occupied|empty)>
+; Default: <label-state>
+format = <label-state>
+
+; Available tokens:
+;   %name%
+; Default: %name%
+label-monitor = %name%
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+; Default: %icon%  %name%
+label-active = " %index% " 
+label-active-foreground = #ffffff
+label-active-background = #3f3f3f
+label-active-underline = #fba922
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+; Default: %icon%  %name%
+label-occupied = " %index% "
+label-occupied-underline = #555555
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+; Default: %icon%  %name%
+label-urgent = " %index% "
+label-urgent-foreground = #000000
+label-urgent-background = #bd2c40
+label-urgent-underline = #9b0a20
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+; Default: %icon%  %name%
+label-empty = " %index% "
+label-empty-foreground = #55
 [module/bluetooth]
 type = custom/script
 exec = ~/.local/bin/bluetooth_poly
@@ -289,7 +365,7 @@ ramp-signal-3 = " 󰤥"
 ramp-signal-4 = " 󰤨"
 
 label-disconnected = " 󰤮 Disconnected "
-:label-connected = " Connected "
+;label-connected = " Connected "
 label-connected = "%essid% "
 
 format-connected-foreground = ${colors.nord0}

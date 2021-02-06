@@ -19,7 +19,8 @@ setopt autocd		# Automatically cd into typed directory.
 setopt INC_APPEND_HISTORY
 #save only one command if 2 common are same and consistent
 setopt HIST_IGNORE_DUPS
-HISTTIMEFORMAT="[%F %T] "
+setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
+#HISTTIMEFORMAT="[%F %T] "
 #add timestamp for each entry
 setopt EXTENDED_HISTORY
 HISTSIZE=1000000
@@ -120,6 +121,8 @@ lfcd () {
 #bindkey -s '^a' 'bc -l\n'
 
 bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
+#zle -N fzf-completion-widget
+#bindkey '^I' fzf-completion-widget
 
 bindkey '^[[P' delete-char
 if [[ -n $TMUX ]]; then
@@ -141,6 +144,7 @@ compctl -K _dotnet_zsh_complete dotnet
 
 source ~/.config/zsh/zinit/zinit.zsh
 zinit light romkatv/powerlevel10k
+zinit light qblays/fzf-tab
 zinit light zdharma/fast-syntax-highlighting
 zinit wait lucid for \
 	atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
@@ -154,8 +158,14 @@ zinit wait lucid for \
 	zsh-users/zsh-autosuggestions
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-source /home/gorm/.config/broot/launcher/bash/br
+zstyle ":completion:*:git-checkout:*" sort false
+zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+zstyle ':fzf-tab:complete:cd:*' popup-pad 30 0
+#zstyle ':fzf-tab:*' fzf-flags '--height 100%'
+source /home/gorm/.config/broot/launcher/bash/br 2> /dev/null
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh

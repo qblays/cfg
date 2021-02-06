@@ -16,3 +16,6 @@
 [submodule "other/.local/bin/polywins"]
 	path = other/.local/bin/polywins
 	url = https://github.com/qblays/polywins.git
+[submodule "other/.local/bin/fzf-tmux-script"]
+	path = other/.local/bin/fzf-tmux-script
+	url = https://github.com/kevinhwang91/fzf-tmux-script

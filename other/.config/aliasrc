@@ -1,7 +1,25 @@
 #!/bin/sh
 
+# Colorize commands when possible.
+alias \
+	ls="ls -hN --color=auto --group-directories-first" \
+	grep="grep --color=auto" \
+	diff="diff --color=auto" \
+	ccat="highlight --out-format=ansi" \
+	ll="ls -lah"
 # Use neovim for vim if present.
 [ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
+[ -x "$(command -v vifmrun)" ] && alias vifm="vifmrun"
+[ -x "$(command -v exa)" ] && alias ls="exa"
+fmf()
+{
+    local dst="$(vifm --choose-dir - "$@")"
+    if [ -z "$dst" ]; then
+        return 1
+    fi
+    cd "$dst"
+}
+alias fm="fmf"
 
 # Verbosity and settings that you pretty much just always are going to want.
 alias \
@@ -21,13 +39,6 @@ alias \
 	szp="source ~/.zprofile" \
 	vit="nvim ~/.tmux.conf" \
 	vin="nvim ~/.config/nvim/init.vim"
-# Colorize commands when possible.
-alias \
-	ls="ls -hN --color=auto --group-directories-first" \
-	grep="grep --color=auto" \
-	diff="diff --color=auto" \
-	ccat="highlight --out-format=ansi" \
-	ll="ls -la"
 
 # These common commands are just too long! Abbreviate them.
 alias \

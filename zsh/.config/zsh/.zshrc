@@ -1,11 +1,18 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+# for creating zsh process and starting program in init
+# zsh -is eval 'your shell command here'
+if [[ $1 == eval ]]
+then
+    "$@"
+set --
+fi
 # Base16 Shell
 BASE16_SHELL="$HOME/.config/base16-shell/"
 [ -n "$PS1" ] && \
 	[ -s "$BASE16_SHELL/profile_helper.sh" ] && \
 	eval "$("$BASE16_SHELL/profile_helper.sh")"
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -69,7 +76,7 @@ bindkey  -M vicmd -s "^[[1;3D" "^[[D"
 bindkey  -M vicmd -s "^[[1;3B" "^[[B" #down
 bindkey  -M vicmd -s "^[[1;3A" "^[[A"  #up
 export EDITOR='nvim'
-export BROWSER='google-chrome'
+export BROWSER='vivaldi-snapshot'
 export VISUAL='nvim'
 export LC_ALL='en_US.UTF-8'
 export ZSH_TMUX_FORCEUTF8=true
@@ -103,8 +110,8 @@ zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` ha
 echo -ne "\e[5 q"
 }
 zle -N zle-line-init
-echo -ne '\e[5 q' # Use beam shape cursor on startup.
-preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+#echo -ne '\e[5 q' # Use beam shape cursor on startup.
+#preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 # Use lf to switch directories and bind it to ctrl-o
 lfcd () {

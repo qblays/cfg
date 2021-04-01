@@ -20,6 +20,8 @@ if has('nvim-0.5')
 	Plug 'neovim/nvim-lspconfig'
 endif
 " utils
+Plug 'airblade/vim-gitgutter'
+Plug 'vifm/vifm.vim'
 Plug 'google/vim-searchindex'
 Plug 'vimwiki/vimwiki'
 Plug 'lervag/vimtex'
@@ -87,7 +89,6 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set guifont=JetBrainsMono:h12
-set cursorline
 imap <C-k> <Esc>
 xmap <C-k> <Esc>
 cmap <C-k> <Esc>
@@ -145,7 +146,7 @@ let g:gruvbox_material_current_word = 'bold'
 let g:gruvbox_material_background = 'hard'
 let g:gruvbox_material_enable_italic = 1
 let g:gruvbox_material_enable_bold = 1
-let g:gruvbox_material_transparent_background = 0
+let g:gruvbox_material_transparent_background = 1
 let g:gruvbox_material_palette = 'material'
 let g:gruvbox_material_diagnostic_line_highlight = 1
 let g:lightline = {
@@ -175,6 +176,9 @@ let g:tmuxline_separators = {
 			\ 'right_alt' : "\ue0bd",
 			\ 'space' : ''}
 colorscheme gruvbox-material
+set cursorline
+hi clear CursorLine
+highlight CursorLine cterm=underline gui=underline ctermfg=None guifg=None
 " Permanent undo
 set undodir=~/.vimdid
 set undofile

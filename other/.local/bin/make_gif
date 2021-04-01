@@ -2,7 +2,7 @@
 TMP_STOP=/tmp/stop_ffmpeg_gif
 if [[ -f "$TMP_STOP" ]]
 then
-	echo "tmp stop exists so push q there"
+	notify-send "requested gif recording stop"
 	echo 'q' > $TMP_STOP
 	rm $TMP_STOP
 else
@@ -12,10 +12,12 @@ else
 	read -r X Y W H G ID < <(echo $slop)
 	touch $TMP_STOP
 	GIF=~/Gifs/$(date '+%Y-%m-%d-%H-%M-%S').gif
+	notify-send "gif recording started"
 	<$TMP_STOP ffmpeg -s "$W"x"$H" -y -f x11grab -i :0.0+$X,$Y -vcodec \
 		huffyuv -r 10 $TMP_AVI              \
 		&& convert -layers Optimize \
 		$TMP_AVI $GIF \
-		&& echo "$GIF saved"
+		&& echo "$GIF saved" \
+		&& notify-send "$GIF saved"
 	rm $TMP_STOP
 fi

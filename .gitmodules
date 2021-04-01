@@ -19,3 +19,9 @@
 [submodule "other/.local/bin/fzf-tmux-script"]
 	path = other/.local/bin/fzf-tmux-script
 	url = https://github.com/kevinhwang91/fzf-tmux-script
+[submodule "other/.local/bin/vifmimg"]
+	path = other/.local/bin/vifmimg
+	url = https://github.com/cirala/vifmimg
+[submodule "other/.local/bin/vifm_devicons"]
+	path = other/.local/bin/vifm_devicons
+	url = https://github.com/cirala/vifm_devicons

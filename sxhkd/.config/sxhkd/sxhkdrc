@@ -5,15 +5,10 @@
 # terminal emulator
 super + Return
 	alacritty
-# Add focused window to a tabbed instance in given direction
-#super + p; {h,j,k,l}
-    #tabc add {west,south,north,east} $(bspc query -N -n focused)
-
-# Remove one tab from tabbed
-#super + p; r
-    #tabbed=$(bspc query -N -n focused); \
-    #child=$(tabc list $tabbed | head -n1); \
-    #tabc remove $child
+super + shift + c
+	rofi -show calc -modi calc -no-show-match -no-sort
+super + d
+	alacritty -e zsh -is eval vifmrun
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -114,8 +109,6 @@ super + bracket{left,right}
 # Emulate home/end keys
 #alt + x
     #xte 'keyup Alt_L'  'key h'
-control + x
-    xdotool key Up
 # focus the last node/desktop
 #alt + {Tab}
 	#bspc {node} -f last

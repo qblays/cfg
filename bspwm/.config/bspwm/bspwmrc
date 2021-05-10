@@ -3,11 +3,15 @@
 pgrep -x sxhkd > /dev/null || sxhkd &
 pgrep -x picom > /dev/null || picom &
 pgrep -x dunst > /dev/null || dunst &
+pkill -f pulseaudio-control
+pkill -f polybar-windows
 killall alttab
-( pgrep -x alttab > /dev/null ) || (sleep 15 && alttab -w 1 -mk Alt_L -d 1 &)
 xset r rate 300 25
-xwallpaper --stretch ~/.config/wp/vsadnica-gory-zamok-reka.jpg
+#xwallpaper --stretch ~/.config/wp/vsadnica-gory-zamok-reka.jpg
+#xwallpaper --stretch /newdata/YandexDisk/misc/wp/16198572525550.png
+xwallpaper --stretch /newdata/YandexDisk/misc/wp/Bellotto,_Bernardo_-_View_of_Pirna_from_the_Sonnenstein_Castle.jpg
 xsetroot -cursor_name left_ptr
+xinput set-prop "Gaming Mouse" "Coordinate Transformation Matrix" 1 0 0 0 1 0 0 0 0.75
 bspc monitor -d I II III IV V VI VII VIII IX X
 
 bspc config border_width        1

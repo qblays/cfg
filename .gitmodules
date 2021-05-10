@@ -25,3 +25,6 @@
 [submodule "other/.local/bin/vifm_devicons"]
 	path = other/.local/bin/vifm_devicons
 	url = https://github.com/cirala/vifm_devicons
+[submodule "other/.local/bin/polybar-mic-volume"]
+	path = other/.local/bin/polybar-mic-volume
+	url = https://github.com/qblays/polybar-mic-volume

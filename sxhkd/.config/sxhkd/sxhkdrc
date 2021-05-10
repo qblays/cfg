@@ -10,6 +10,9 @@ super + shift + c
 super + d
 	alacritty -e zsh -is eval vifmrun
 
+shift + F2
+	amixer -D pulse sset Capture toggle
+
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
@@ -19,10 +22,19 @@ super + g
 super + f
 	rofi -modi drun -show drun -show-icons
 super + o
-	i3lock -i ~/.config/wp/vsadnica-gory-zamok-reka.png
+    i3lock --keylayout 1 -i /newdata/YandexDisk/misc/wp/night_art_moon.jpg \
+	--ringcolor=000000 --keyhlcolor=599ee3 --insidevercolor=000000 \
+	--ringvercolor=259c47 --layoutcolor=599ee3 --timecolor=599ee3 \
+	--datecolor=599ee3
+	#betterlockscreen -l ~/.config/wp/vsadnica-gory-zamok-reka.png
+super + a
+	xwinmosaic
 
 super + shift + o
-	i3lock -i ~/.config/wp/vsadnica-gory-zamok-reka.png && xset dpms force off
+    i3lock --keylayout 1 -i /newdata/YandexDisk/misc/wp/night_art_moon.jpg \
+	--ringcolor=000000 --keyhlcolor=599ee3 --insidevercolor=000000 \
+	--ringvercolor=259c47 --layoutcolor=599ee3 --timecolor=599ee3 \
+	--datecolor=599ee3 && xset dpms force off
 
 super + space
 	xkb-switch -n

@@ -10,4 +10,5 @@ while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 polybar mybar &
 sleep 1
 xkbcomp ~/input.xkb $DISPLAY
+( pgrep -x alttab > /dev/null ) || (sleep 0 && alttab -w 1 -mk Alt_L -d 1 &)
 echo "Polybar launched..."

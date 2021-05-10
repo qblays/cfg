@@ -22,6 +22,7 @@ endif
 " utils
 Plug 'airblade/vim-gitgutter'
 Plug 'vifm/vifm.vim'
+Plug 'sk1418/HowMuch'
 Plug 'google/vim-searchindex'
 Plug 'vimwiki/vimwiki'
 Plug 'lervag/vimtex'
@@ -121,6 +122,8 @@ augroup END
 autocmd Filetype go,cpp,h,hpp,c setlocal tabstop=2
 autocmd Filetype go,cpp,h,hpp,c setlocal softtabstop=2
 autocmd Filetype go,cpp,h,hpp,c setlocal shiftwidth=2
+autocmd Filetype cpp,h,hpp,c setlocal expandtab
+let g:searchindex_line_limit = 100000000
 let g:tex_flavor = 'latex'
 let g:gruvbox_italic=1
 let g:gruvbox_contrast_dark= "hard"
@@ -232,6 +235,7 @@ noremap <leader>d "+d
 " <leader>s for Rg search
 " root is cwd if true
 let g:rg_derive_root='true'
+let g:fzf_preview_window = ['up:50%', 'ctrl-/']
 " If more than one window and previous buffer was NERDTree, go back to it.
 autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
 noremap <leader>s :Rg

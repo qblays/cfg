@@ -61,14 +61,14 @@ wm-restack = bspwm
 ;		FONTS
 ;---------------------------------------
 
-font-0 = JetBrains Mono:size=10.5:weight=bold:antialias=true;3
+font-0 = JetBrainsMono Nerd Font:size=10.5:weight=bold:antialias=true;3
 font-1 = Material Design Icons Desktop:size=13;3
 
-font-2 = JetBrains Mono:size=11:weight=medium;3
+font-2 = JetBrainsMono NF:size=11:weight=medium;3
 ;---------------------------------------
 ;	     MODULES LAYOUT
 ;---------------------------------------
-modules-right = filesystem memory cpu eth network pulseaudio-control bluetooth battery xkeyboard date time volume
+modules-right = filesystem memory cpu eth network pulseaudio-control bluetooth mic-volume battery xkeyboard date time volume
 modules-left = ewmh polybar-windows
 ;---------------------------------------
 ;	   KEYBOARD MODULE
@@ -119,6 +119,19 @@ label-mounted = %mountpoint%: %free%
 format-mounted-foreground = ${colors.nord0}
 format-mounted-background = ${colors.nord11}
 
+[module/mic-volume]
+type = custom/script
+interval = 1
+format = "<label> "
+format-prefix = " "
+exec = bash ~/.local/bin/polybar-mic-volume/mic-volume/mic-volume.sh show-vol
+format-foreground = ${colors.nord0}
+format-background = ${colors.nord7}
+
+; Control actions (using pactl)
+click-left = bash ~/.local/bin/polybar-mic-volume/mic-volume/mic-volume.sh mute-vol
+scroll-up = bash ~/.local/bin/polybar-mic-volume/mic-volume/mic-volume.sh inc-vol
+scroll-down = bash ~/.local/bin/polybar-mic-volume/mic-volume/mic-volume.sh dec-vol
 
 [module/xkeyboard]
 type = custom/script
@@ -378,7 +391,7 @@ type = custom/script
 tail = true
 label=%output%
 
-exec = ~/.local/bin/poly_pulseaudio/pulseaudio-control.bash listen
+exec = ~/.local/bin/poly_pulseaudio/pulseaudio-control.bash --sink-nickname bluez_sink.E4_22_A5_BE_54_2D.a2dp_sink:PLT --sink-nickname alsa_output.pci-0000_01_00.1.hdmi-stereo-extra1:HDMI --sink-nickname alsa_output.pci-0000_00_1f.3.analog-stereo:jack --sink-blacklist noechosink listen
 click-right = exec pavucontrol &
 click-left = ~/.local/bin/poly_pulseaudio/pulseaudio-control.bash togmute
 click-middle = ~/.local/bin/poly_pulseaudio/pulseaudio-control.bash next-sink

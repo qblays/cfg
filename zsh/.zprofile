@@ -9,11 +9,12 @@
 export PATH="$PATH:$(du "$HOME/.local/bin" | cut -f2 | paste -sd ':')"
 export PATH=$HOME/proj/go/bin:$PATH
 export PATH=$HOME/.local/bin/vifmimg:$PATH
+export PATH=$HOME/.emacs.d/bin:$PATH
 
 # Default programs:
 export EDITOR="nvim"
 export TERMINAL="alacritty"
-export BROWSER="google-chrome"
+export BROWSER="vivaldi-snapshot"
 export PYTHON_HOST_PROG='/home/gorm/envs/neovim/bin/python'
 export PYTHON3_HOST_PROG='/home/gorm/envs/neovim/bin/python'
 # ~/ Clean-up:

@@ -43,7 +43,7 @@ autoload -U compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 fpath+=~/.config/zsh/.zfunc
-compinit
+compinit -u
 _comp_options+=(globdots)		# Include hidden files.
 
 # zle will use vi mode

@@ -322,6 +322,7 @@ vnoremap < <gv
 " ,p will paste clipboard into buffer
 " ,c will copy entire buffer into clipboard
 
+let g:oscyank_max_length = 1000000
 noremap <leader>p "+p
 noremap <leader>y :OSCYank<cr>
 noremap <leader>d "+d

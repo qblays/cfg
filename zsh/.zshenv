@@ -58,3 +58,5 @@ export AWT_TOOLKIT="MToolkit wmname LG3D"	#May have to install wmname
 export _JAVA_AWT_WM_NONREPARENTING=1	# Fix for Java applications in dwm
 export TEXMFDIST="/usr/share/texmf-dist"
 export CALIBRE_USE_DARK_PALETTE="yes"
+export tNavigator_INTERNALS_CHECK_RESTART=yes
+export tNavigator_INTERNALS_ENABLE_PROFILER=yes

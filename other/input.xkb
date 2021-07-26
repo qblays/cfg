@@ -1652,7 +1652,6 @@ xkb_symbols "pc+us+ru(phonetic):2+inet(evdev)+terminate(ctrl_alt_bksp)" {
     key <I244> {         [     XF86Battery ] };
     key <I245> {         [   XF86Bluetooth ] };
     key <I246> {         [        XF86WLAN ] };
-    key <I251> {         [ XF86MonBrightnessCycle ] };
     key <I254> {         [        XF86WWAN ] };
     key <I255> {         [      XF86RFKill ] };
     modifier_map Control { <LCTL> };

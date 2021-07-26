@@ -30,6 +30,7 @@ if has('nvim-0.5')
 	Plug 'neovim/nvim-lspconfig'
 endif
 " utils
+Plug 'ojroques/vim-oscyank'
 Plug 'PeterRincker/vim-searchlight'
 Plug 'airblade/vim-gitgutter'
 Plug 'vifm/vifm.vim'
@@ -322,7 +323,7 @@ vnoremap < <gv
 " ,c will copy entire buffer into clipboard
 
 noremap <leader>p "+p
-noremap <leader>y "+y
+noremap <leader>y :OSCYank<cr>
 noremap <leader>d "+d
 let g:loaded_netrw       = 1
 let g:loaded_netrwPlugin = 1

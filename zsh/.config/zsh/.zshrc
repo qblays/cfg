@@ -20,7 +20,7 @@ fi
 autoload -U colors && colors	# Load colors
 PS1="%B%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$reset_color%}$%b "
 setopt autocd		# Automatically cd into typed directory.
-[[ -n ${TTY:-} && $+commands[stty] == 1 ]] && stty -ixon <$TTY >$TTY
+([[ -n ${TTY:-} && $+commands[stty] == 1 ]] && stty -ixon <$TTY >$TTY) > /dev/null 2>&1
 # History in cache directory:
 #append into history file
 setopt INC_APPEND_HISTORY

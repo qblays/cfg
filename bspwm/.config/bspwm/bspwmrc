@@ -14,8 +14,8 @@ xsetroot -cursor_name left_ptr
 xinput set-prop "Gaming Mouse" "Coordinate Transformation Matrix" 1 0 0 0 1 0 0 0 0.75
 bspc monitor -d I II III IV V VI VII VIII IX X
 
-bspc config border_width        1
-bspc config window_gap          4
+bspc config border_width        0
+bspc config window_gap          0
 
 bspc config split_ratio          0.5
 bspc config borderless_monocle   true

@@ -10,6 +10,7 @@ export PATH="$PATH:$(du "$HOME/.local/bin" | cut -f2 | paste -sd ':')"
 export PATH=$HOME/proj/go/bin:$PATH
 export PATH=$HOME/.local/bin/vifmimg:$PATH
 export PATH=$HOME/.emacs.d/bin:$PATH
+export PATH=$HOME/.dotnet/tools:$PATH
 
 # Default programs:
 export EDITOR="nvim"
@@ -25,6 +26,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export NOTMUCH_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/notmuch-config"
 export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
 export LESSHISTFILE="-"
+export _NT_SYMBOL_PATH='srv*/home/gorm/dotnet_src*https://msdl.microsoft.com/download/symbols'
 export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
 export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/inputrc"
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
@@ -60,6 +62,8 @@ export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
 export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
 export AWT_TOOLKIT="MToolkit wmname LG3D"	#May have to install wmname
 export _JAVA_AWT_WM_NONREPARENTING=1	# Fix for Java applications in dwm
+export TEXMFDIST="/usr/share/texmf-dist"
+export CALIBRE_USE_DARK_PALETTE="yes"
 
 # set antitearing setting
 nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 { ForceFullCompositionPipeline = On }" >/dev/null 2>&1

@@ -5,36 +5,45 @@
 # terminal emulator
 super + Return
 	alacritty
-super + shift + c
+super + c
 	rofi -show calc -modi calc -no-show-match -no-sort
 super + d
 	alacritty -e zsh -is eval vifmrun
 
 shift + F2
 	amixer -D pulse sset Capture toggle
+F1
+	amixer -D pulse sset Capture toggle
 
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
+
+# toggle redshift
+super + shift + r
+	pkill -USR1 redshift
 
 super + g
 	rofi -combi-modi window,drun,ssh -show combi -show-icons
 super + f
 	rofi -modi drun -show drun -show-icons
 super + o
-    i3lock --keylayout 1 -i /newdata/YandexDisk/misc/wp/night_art_moon.jpg \
-	--ringcolor=000000 --keyhlcolor=599ee3 --insidevercolor=000000 \
-	--ringvercolor=259c47 --layoutcolor=599ee3 --timecolor=599ee3 \
-	--datecolor=599ee3
+    xkb-switch -s us && \
+	i3lock --keylayout 1 -i /newdata/YandexDisk/misc/wp/night_art_moon.jpg \
+	--ring-color=000000 --keyhl-color=599ee3 --insidever-color=000000 \
+	--ringver-color=259c47 --layout-color=599ee3 --time-color=599ee3 \
+	--date-color=599ee3
 	#betterlockscreen -l ~/.config/wp/vsadnica-gory-zamok-reka.png
 super + a
 	xwinmosaic
 
 super + shift + o
-    i3lock --keylayout 1 -i /newdata/YandexDisk/misc/wp/night_art_moon.jpg \
-	--ringcolor=000000 --keyhlcolor=599ee3 --insidevercolor=000000 \
-	--ringvercolor=259c47 --layoutcolor=599ee3 --timecolor=599ee3 \
-	--datecolor=599ee3 && xset dpms force off
+    xkb-switch -s us && \
+	i3lock --keylayout 1 -i /newdata/YandexDisk/misc/wp/night_art_moon.jpg \
+	--ring-color=000000 --keyhl-color=599ee3 --insidever-color=000000 \
+	--ringver-color=259c47 --layout-color=599ee3 --time-color=599ee3 \
+	--date-color=599ee3 \
+	&& xset dpms force off
 
 super + space
 	xkb-switch -n

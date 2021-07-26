@@ -20,6 +20,7 @@ fmf()
     cd "$dst"
 }
 alias fm="fmf"
+alias tlmgr='/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode'
 
 # Verbosity and settings that you pretty much just always are going to want.
 alias \

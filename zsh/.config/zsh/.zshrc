@@ -153,6 +153,7 @@ source ~/.config/zsh/zinit/zinit.zsh
 zinit light romkatv/powerlevel10k
 zinit light qblays/fzf-tab
 zinit light zdharma/fast-syntax-highlighting
+#zinit load marlonrichert/zsh-autocomplete
 zinit wait lucid for \
 	atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
 	blockf \

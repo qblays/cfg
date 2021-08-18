@@ -1,8 +1,8 @@
 #! /bin/sh
-
 pgrep -x sxhkd > /dev/null || sxhkd &
 pgrep -x picom > /dev/null || picom &
 pgrep -x dunst > /dev/null || dunst &
+xrandr --output DP-0 --primary --mode 2560x1440 --output HDMI-0 --mode 1920x1080 --right-of DP-0
 pkill -f pulseaudio-control
 pkill -f polybar-windows
 killall alttab
@@ -14,8 +14,9 @@ xsetroot -cursor_name left_ptr
 # set speed of mouse 13, transform matrix in parameter 155
 xinput set-prop "Gaming Mouse" "Coordinate Transformation Matrix" 1 0 0 0 1 0 0 0 0.68 >/dev/null 2>&1
 # set antitearing setting
-nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 { ForceFullCompositionPipeline = On }" >/dev/null 2>&1
-bspc monitor -d I II III IV V VI VII VIII IX X
+#nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 { ForceFullCompositionPipeline = On }" >/dev/null 2>&1
+bspc monitor DP-0 -d I II III IV V
+bspc monitor HDMI-0 -d VI VII VIII IX X
 
 bspc config border_width        0
 bspc config window_gap          0
@@ -37,4 +38,6 @@ bspc rule -a zoom desktop='^10'  follow=on
 bspc rule -a TeamViewer desktop='^10'
 bspc rule -a Google-chrome desktop='^1' follow=on
 bspc rule -a Pavucontrol state=floating center=on rectangle=1000x800+0+0
+bspc monitor DP-0 -g 2560x1440+0+0
+xkbcomp ~/input.xkb $DISPLAY
 $HOME/.config/polybar/launch.sh

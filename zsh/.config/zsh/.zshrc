@@ -33,6 +33,12 @@ setopt EXTENDED_HISTORY
 HISTSIZE=1000000
 SAVEHIST=1000000
 HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/history"
+DISABLE_AUTO_TITLE="true"
+case $TERM in
+    xterm*)
+        precmd () {print -Pn "\e]0;$HOST\a"}
+        ;;
+esac
 # Load aliases and shortcuts if existent.
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc"
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/aliasrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/aliasrc"
@@ -175,7 +181,11 @@ zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 zstyle ':fzf-tab:complete:cd:*' popup-pad 30 0
 #zstyle ':fzf-tab:*' fzf-flags '--height 100%'
 source /home/gorm/.config/broot/launcher/bash/br 2> /dev/null
-
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+case ${TERM} in
+ alacritty)
+          PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}"'
+          ;;
+esac
 #source "$HOME/.config/zsh/theme.zsh"

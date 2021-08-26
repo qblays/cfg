@@ -7,6 +7,7 @@ configuration {
   display-drun: " ";
   display-window: " ";
   modi: "run,drun";
+  matching: "fuzzy";
 }
 * {
   background-color: #2E3440;

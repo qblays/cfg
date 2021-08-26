@@ -185,9 +185,9 @@
         <wrap>no</wrap>
       </action>
     </keybind>
-    <keybind key="C-A-Right">
+    <keybind key="W-1">
       <action name="GoToDesktop">
-        <to>right</to>
+        <to>1</to>
         <wrap>no</wrap>
       </action>
     </keybind>

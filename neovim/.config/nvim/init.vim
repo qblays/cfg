@@ -380,6 +380,7 @@ let g:tagbar_type_go = {
 \ }
 let g:go_doc_keywordprg_enabled = 0
 set updatetime=1
+set title
 " coc shit
 " Some servers have issues with backup files, see #649.
 "set nobackup

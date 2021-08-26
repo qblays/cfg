@@ -27,9 +27,13 @@ super + g
 	rofi -combi-modi window,drun,ssh -show combi -show-icons
 super + f
 	rofi -modi drun -show drun -show-icons
+alt + grave
+	rofi -combi-modi window,drun,ssh -show combi -show-icons
+#alt + Tab 
+	#skippy-xd --config ~/.config/skippy-xd/skippy-xd.rd --toggle-window-picker
 super + o
     xkb-switch -s us && \
-	i3lock --keylayout 1 -i /newdata/YandexDisk/misc/wp/night_art_moon.jpg \
+	i3lock --keylayout 1 -i ~/.config/wp/night_cat_sea.jpg \
 	--ring-color=000000 --keyhl-color=599ee3 --insidever-color=000000 \
 	--ringver-color=259c47 --layout-color=599ee3 --time-color=599ee3 \
 	--date-color=599ee3
@@ -39,7 +43,7 @@ super + a
 
 super + shift + o
     xkb-switch -s us && \
-	i3lock --keylayout 1 -i /newdata/YandexDisk/misc/wp/night_art_moon.jpg \
+	i3lock --keylayout 1 -i ~/.config/wp/night_cat_sea.jpg \
 	--ring-color=000000 --keyhl-color=599ee3 --insidever-color=000000 \
 	--ringver-color=259c47 --layout-color=599ee3 --time-color=599ee3 \
 	--date-color=599ee3 \
@@ -59,125 +63,127 @@ super + ctrl + g
 # bspwm hotkeys
 #
 
-# quit/restart bspwm
-super + alt + {q,r}
-	bspc {quit,wm -r}
+super + alt + r
+	echo 'awesome.restart()' | awesome-client
+## quit/restart bspwm
+#super + alt + {q,r}
+	#bspc {quit,wm -r}
 
-# close and kill
-super + {_,shift + }w
-	bspc node -{c,k}
+## set the window state
+#super + {t,shift + t,s,shift+f}
+	#bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
-# alternate between the tiled and monocle layout
-super + m
-	bspc desktop -l next
+## close and kill
+#super + {_,shift + }w
+	#bspc node -{c,k}
 
-# Move current window to a pre-selected space
-super + shift + m
-    bspc node -n last.!automatic
+## alternate between the tiled and monocle layout
+#super + m
+	#bspc desktop -l next
 
-# Close all receptacle
-super + shift + i
-  for win in `bspc query -N -n .leaf.\!window`; do bspc node $win -k ; done;
+## Move current window to a pre-selected space
+#super + shift + m
+    #bspc node -n last.!automatic
 
-# Insert receptacle
-super + i; {h,j,k,l}
-  bspc node --presel-dir {west,south,north,east} -i
+## Close all receptacle
+#super + shift + i
+  #for win in `bspc query -N -n .leaf.\!window`; do bspc node $win -k ; done;
 
-# Move to rectacle
-super + r
-  bspc node $(bspc query -N -n focused) -n $(bspc query -N -n .leaf.\!window)
+## Insert receptacle
+#super + i; {h,j,k,l}
+  #bspc node --presel-dir {west,south,north,east} -i
 
-# Balance nodes
-super + e
-  bspc node @/ -B
-# send the newest marked node to the newest preselected node
-#super + y
-	#bspc node newest.marked.local -n newest.!automatic.local
+## Move to rectacle
+#super + r
+  #bspc node $(bspc query -N -n focused) -n $(bspc query -N -n .leaf.\!window)
 
-# swap the current node and the biggest window
-super + u
-	bspc node -s biggest.window.local
+## Balance nodes
+#super + e
+  #bspc node @/ -B
+## send the newest marked node to the newest preselected node
+##super + y
+	##bspc node newest.marked.local -n newest.!automatic.local
 
-#
-# state/flags
-#
+## swap the current node and the biggest window
+#super + u
+	#bspc node -s biggest.window.local
 
-# set the window state
-super + {t,shift + t,s,shift+f}
-	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+##
+## state/flags
+##
 
-# set the node flags
-super + ctrl + {m,x,y,z}
-	bspc node -g {marked,locked,sticky,private}
+## set the node flags
+#super + ctrl + {m,x,y,z}
+	#bspc node -g {marked,locked,sticky,private}
 
-# focus/swap the node in the given direction
-super + {_,shift + }{h,j,k,l}
-	bspc node -{f,s} {west,south,north,east}
+## focus/swap the node in the given direction
+#super + {_,shift + }{h,j,k,l}
+	#bspc node -{f,s} {west,south,north,east}
 
-# focus the node for the given path jump
-super + {p,b,comma,period}
-	bspc node -f @{parent,brother,first,second}
+## focus the node for the given path jump
+#super + {p,b,comma,period}
+	#bspc node -f @{parent,brother,first,second}
 
-# Rotate the tree from the current nodes parent
-super + control + {Right, Left}
-	bspc node @parent --rotate {90,270}
+## Rotate the tree from the current nodes parent
+#super + control + {Right, Left}
+	#bspc node @parent --rotate {90,270}
 
-# focus the next/previous desktop in the current monitor
-super + bracket{left,right}
+## focus the next/previous desktop in the current monitor
+#super + bracket{left,right}
 
-	bspc desktop -f {prev,next}.local
+	#bspc desktop -f {prev,next}.local
 
-# Emulate home/end keys
-#alt + x
-    #xte 'keyup Alt_L'  'key h'
-# focus the last node/desktop
-#alt + {Tab}
-	#bspc {node} -f last
+## Emulate home/end keys
+##alt + x
+    ##xte 'keyup Alt_L'  'key h'
+## focus the last node/desktop
+##alt + {Tab}
+	##bspc {node} -f last
 
-# focus the older or newer node in the focus history
-#super + {o,i}
-	#bspc node {older,newer} -f;
+## focus the older or newer node in the focus history
+##super + {o,i}
+	##bspc node {older,newer} -f;
 
-# focus or send to the given desktop
-super + {_,shift +}{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
-super + ctrl + shift + {1-9,0}
-	bspc node -d '^{1-9,10}' --follow
-#
-# preselect
-#
+## focus or send to the given desktop
+#super + {_,shift +}{1-9,0}
+	#bspc {desktop -f,node -d} '^{1-9,10}'
+#super + ctrl + shift + {1-9,0}
+	#bspc node -d '^{1-9,10}' --follow
+##
+## preselect
+##
 
-# preselect the direction
-super + ctrl + {h,j,k,l}
-	bspc node -p {west,south,north,east}
-# Flip the tree from the current nodes parent
-super + control + shift + {h,j,k,l}
-  bspc node @parent -F {vertical,horizontal,horizontal,vertical}
+## preselect the direction
+#super + ctrl + {h,j,k,l}
+	#bspc node -p {west,south,north,east}
+## Flip the tree from the current nodes parent
+#super + control + shift + {h,j,k,l}
+  #bspc node @parent -F {vertical,horizontal,horizontal,vertical}
 
-# preselect the ratio
-super + ctrl + {1-9}
-	bspc node -o 0.{1-9}
+## preselect the ratio
+#super + ctrl + {1-9}
+	#bspc node -o 0.{1-9}
 
-# cancel the preselection for the focused node
-super + ctrl + space
-	bspc node -p cancel
+## cancel the preselection for the focused node
+#super + ctrl + space
+	#bspc node -p cancel
 
-# cancel the preselection for the focused desktop
-super + ctrl + shift + space
-	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+## cancel the preselection for the focused desktop
+#super + ctrl + shift + space
+	#bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
-#
-# move/resize
-#
+##
+## move/resize
+##
 
-# expand a window by moving one of its side outward
-super + {Left,Down,Up,Right}
-	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+## expand a window by moving one of its side outward
+#super + {Left,Down,Up,Right}
+	#bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 
-# contract a window by moving one of its side inward
-super + shift + {Left,Down,Up,Right}
-	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+## contract a window by moving one of its side inward
+#super + shift + {Left,Down,Up,Right}
+	#bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 
-# move a floating window
-super + alt + {Left,Down,Up,Right}
-	bspc node -v {-20 0,0 20,0 -20,20 0}
+## move a floating window
+#super + alt + {Left,Down,Up,Right}
+	#bspc node -v {-20 0,0 20,0 -20,20 0}

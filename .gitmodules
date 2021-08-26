@@ -28,3 +28,9 @@
 [submodule "other/.local/bin/polybar-mic-volume"]
 	path = other/.local/bin/polybar-mic-volume
 	url = https://github.com/qblays/polybar-mic-volume
+[submodule "awesome/.config/awesome/charitable"]
+	path = awesome/.config/awesome/charitable
+	url = https://github.com/frioux/charitable
+[submodule "awesome/.config/awesome/sharedtags"]
+	path = awesome/.config/awesome/sharedtags
+	url = https://github.com/Drauthius/awesome-sharedtags

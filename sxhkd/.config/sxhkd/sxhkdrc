@@ -29,6 +29,8 @@ super + f
 	rofi -modi drun -show drun -show-icons
 alt + grave
 	rofi -combi-modi window,drun,ssh -show combi -show-icons
+#alt + Tab
+	#rofi -show window -kb-accept-entry '!Alt-Tab' -kb-row-down Alt-Tab
 #alt + Tab 
 	#skippy-xd --config ~/.config/skippy-xd/skippy-xd.rd --toggle-window-picker
 super + o

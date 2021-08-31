@@ -34,3 +34,6 @@
 [submodule "awesome/.config/awesome/sharedtags"]
 	path = awesome/.config/awesome/sharedtags
 	url = https://github.com/Drauthius/awesome-sharedtags
+[submodule "awesome/.config/awesome/gobo-awesome-alttab"]
+	path = awesome/.config/awesome/gobo-awesome-alttab
+	url = https://github.com/gobolinux/gobo-awesome-alttab

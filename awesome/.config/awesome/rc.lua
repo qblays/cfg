@@ -18,6 +18,7 @@ naughty.config.defaults['icon_size'] = 100
 local lain          = require("lain")
 local freedesktop   = require("freedesktop")
 local sharedtags    = require("sharedtags")
+local alttab        = require("gobo.awesome.alttab")
 
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
@@ -331,6 +332,18 @@ globalkeys = my_table.join(
 
     awful.key({ winkey,           }, "s",      hotkeys_popup.show_help,
         {description = "show help", group="awesome"}),
+	awful.key({ winkey }, "Tab",
+	function()
+		alttab.switch(1, "Alt_L", "Tab", "ISO_Left_Tab")
+	end,
+	{ description = "Switch between windows", group = "awesome" }
+	),
+	awful.key({ winkey, "Shift" }, "Tab",
+	function()
+		alttab.switch(-1, "Alt_L", "Tab", "ISO_Left_Tab")
+	end,
+	{ description = "Switch between windows backwards", group = "awesome" }
+	),
 
     -- Tag browsing with winkey
     --awful.key({ winkey,           }, "Left",   awful.tag.viewprev,

@@ -87,7 +87,7 @@ myEditor = "emacsclient -c -a 'emacs' "  -- Sets emacs as editor
 -- myEditor = myTerminal ++ " -e vim "    -- Sets vim as editor
 
 myBorderWidth :: Dimension
-myBorderWidth = 2           -- Sets border width for windows
+myBorderWidth = 0           -- Sets border width for windows
 
 myNormColor :: String
 myNormColor   = "#282c34"   -- Border color of normal windows
@@ -104,7 +104,9 @@ myStartupHook = do
     spawnOnce "picom &"
     --spawnOnce "tint2 &"
     spawnOnce "nm-applet &"
-    spawnOnce "volumeicon &"
+    spawnOnce "blueman-applet &"
+    spawnOnce "pasystray &"
+    spawnOnce "mictray &"
     spawnOnce "dunst &"
     spawnOnce "sxhkd &"
     --spawnOnce "conky -c $HOME/.config/conky/xmonad.conkyrc"
@@ -124,6 +126,7 @@ myStartupHook = do
     -- spawnOnce "feh --randomize --bg-fill ~/wallpapers/*"  -- feh set random wallpaper
     -- spawnOnce "nitrogen --restore &"   -- if you prefer nitrogen to feh
     spawnOnce "xwallpaper --stretch ~/.config/wp/lighthouse.jpg"
+    spawnOnce "sleep 5 && DESKTOP_SESSION=kde KDE_SESSION_VERSION=5 nextcloud &"
     setWMName "LG3D"
 
 myColorizer :: Window -> Bool -> X (String, String)
@@ -219,7 +222,7 @@ tall     = renamed [Replace "tall"]
            $ addTabs shrinkText myTabTheme
            $ subLayout [] (smartBorders Simplest)
            $ limitWindows 12
-           $ mySpacing 8
+           $ mySpacing' 2
            $ ResizableTall 1 (3/100) (1/2) []
 -- magnify  = renamed [Replace "magnify"]
 --            $ smartBorders
@@ -533,7 +536,7 @@ main = do
 		, focusFollowsMouse = False
 		, clickJustFocuses = False
         , logHook = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmobarPP
-              -- the following variables beginning with 'pp' are settings for xmobar.
+              -- the following variables beginning with 'pp' are settings for xmobar. Install xdotool for clickable
               { ppOutput = \x -> hPutStrLn xmproc0 x                          -- xmobar on monitor 1
                               >> hPutStrLn xmproc1 x                          -- xmobar on monitor 2
                               -- >> hPutStrLn xmproc2 x                          -- xmobar on monitor 3

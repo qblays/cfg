@@ -22,7 +22,7 @@ pgrep -x dunst > /dev/null || dunst &
 #pgrep -x tint2 > /dev/null || tint2 &
 #xinput set-prop "Gaming Mouse" "Coordinate Transformation Matrix" 1 0 0 0 1 0 0 0 0.48 >/dev/null 2>&1
 killall alttab
-( pgrep -x alttab > /dev/null ) || (sleep 5 && alttab -w 1 -d 1 -mk Alt_L &)
+#( pgrep -x alttab > /dev/null ) || (sleep 5 && alttab -w 1 -d 1 -mk Alt_L &)
 #( pgrep -x alttab > /dev/null ) || (sleep 5 && alttab -w 1 -mk Super_L -d 1 &)
 xset r rate 300 25
 sleep 1 && xwallpaper --stretch ~/.config/wp/lighthouse.jpg

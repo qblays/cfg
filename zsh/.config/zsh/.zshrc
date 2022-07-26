@@ -152,7 +152,7 @@ _dotnet_zsh_complete()
 
   reply=( "${(ps:\n:)completions}" )
 }
-eval $(keychain --quiet --eval --nogui --noask id_ed25519 id_rsa)
+#eval $(keychain --quiet --eval --nogui --noask id_ed25519 id_rsa)
 
 compctl -K _dotnet_zsh_complete dotnet
 

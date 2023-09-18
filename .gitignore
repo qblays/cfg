@@ -23,8 +23,10 @@
 !skippy-xd
 !smplayer
 !sxhkd
-!tmux
+!tmux/.tmux.conf
+!tmux/.tmux/.tmuxline1
 !vifm
+*vifminfo.json*
 !wp
 !xmonad
 !yay

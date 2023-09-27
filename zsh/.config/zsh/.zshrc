@@ -1,3 +1,12 @@
+# Basic auto/tab complete:
+autoload -U compinit
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+fpath+=~/.config/zsh/.zfunc
+compinit -u
+_comp_options+=(globdots)		# Include hidden files.
+source ~/.config/zsh/zinit/zinit.zsh
+zinit light chriskempson/base16-shell
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -9,10 +18,10 @@ then
 set --
 fi
 # Base16 Shell
-BASE16_SHELL="$HOME/.config/base16-shell/"
-[ -n "$PS1" ] && \
-	[ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-	eval "$("$BASE16_SHELL/profile_helper.sh")"
+#BASE16_SHELL="$HOME/.config/base16-shell/"
+#[ -n "$PS1" ] && \
+	#[ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+	#eval "$("$BASE16_SHELL/profile_helper.sh")"
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -44,13 +53,6 @@ esac
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/aliasrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/aliasrc"
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/zshnameddirrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/zshnameddirrc"
 
-# Basic auto/tab complete:
-autoload -U compinit
-zstyle ':completion:*' menu select
-zmodload zsh/complist
-fpath+=~/.config/zsh/.zfunc
-compinit -u
-_comp_options+=(globdots)		# Include hidden files.
 
 # zle will use vi mode
 bindkey -v
@@ -156,7 +158,6 @@ _dotnet_zsh_complete()
 
 compctl -K _dotnet_zsh_complete dotnet
 
-source ~/.config/zsh/zinit/zinit.zsh
 zinit light romkatv/powerlevel10k
 zinit light qblays/fzf-tab
 zinit light zdharma/fast-syntax-highlighting
@@ -189,3 +190,5 @@ case ${TERM} in
           ;;
 esac
 #source "$HOME/.config/zsh/theme.zsh"
+# To customize prompt, run `p10k configure` or edit ~/.dotfiles/zsh/.config/zsh/.p10k.zsh.
+[[ ! -f ~/.dotfiles/zsh/.config/zsh/.p10k.zsh ]] || source ~/.dotfiles/zsh/.config/zsh/.p10k.zsh

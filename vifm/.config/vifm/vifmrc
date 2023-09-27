@@ -1,8 +1,14 @@
 " my config
-set previewoptions+=graphicsdelay:0
+"set previewoptions+=graphicsdelay:0
 command!  ServerOn  :!sshfs mikhail.bobrovnikov@192.168.251.210:/ ~/remote
 command!  ServerOff  :!sudo fusermount -u ~/remote
 command! dragon dragon-drag-and-drop -a -x %f
+colorscheme ph
+set mouse=a
+if !has('win')
+ set slowfs=curlftpfs
+endif
+set slowfs+=/rfdyn
 " exit without directory changing"
 command!  q :cq
 " exit with directory changing"
@@ -114,7 +120,6 @@ set norunexec
 
 " Selected color scheme
 
-colorscheme palenight
 
 " Format for displaying time in file list. For example:
 " TIME_STAMP_FORMAT=%m/%d-%H:%M
@@ -152,10 +157,6 @@ set incsearch
 set scrolloff=4
 
 " Don't do too many requests to slow file systems
-
-if !has('win')
-    set slowfs=curlftpfs
-endif
 
 " Set custom status line look
 

@@ -60,3 +60,4 @@ export TEXMFDIST="/usr/share/texmf-dist"
 export CALIBRE_USE_DARK_PALETTE="yes"
 export tNavigator_INTERNALS_CHECK_RESTART=yes
 export tNavigator_INTERNALS_ENABLE_PROFILER=yes
+#. "/home/mikhail.bobrovnikov/.local/share/cargo/env"

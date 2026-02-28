@@ -1,5 +1,5 @@
 xkb_keymap {
-xkb_keycodes "evdev+aliases(qwerty)" {
+xkb_keycodes "evdev_aliases(qwerty)" {
     minimum = 8;
     maximum = 255;
      <ESC> = 9;
@@ -389,7 +389,6 @@ xkb_types "complete" {
     };
     type "LOCAL_EIGHT_LEVEL" {
         modifiers= Shift+Lock+Control+LevelThree;
-        map[Shift+Lock]= Level1;
         map[Shift]= Level2;
         map[Lock]= Level2;
         map[LevelThree]= Level3;
@@ -619,7 +618,6 @@ xkb_types "complete" {
     };
     type "FOUR_LEVEL_MIXED_KEYPAD" {
         modifiers= Shift+NumLock+LevelThree;
-        map[Shift+NumLock]= Level1;
         map[NumLock]= Level2;
         map[Shift]= Level2;
         map[LevelThree]= Level3;
@@ -693,33 +691,6 @@ xkb_compatibility "complete" {
     interpret.useModMapMods= AnyLevel;
     interpret.repeat= False;
     interpret.locking= False;
-    interpret osfLeft {
-            action = RedirectKey(keycode=<LEFT>, clearmodifiers=Mod1);
-        };
-        interpret osfRight {
-            action = RedirectKey(keycode=<RGHT>, clearmodifiers=Mod1);
-        };
-        interpret osfUp {
-            action = RedirectKey(keycode=<UP>, clearmodifiers=Mod1);
-        };
-        interpret osfDown {
-            action = RedirectKey(keycode=<DOWN>, clearmodifiers=Mod1);
-        };
-        interpret osfBeginLine {
-            action = RedirectKey(keycode=<HOME>, clearmodifiers=Mod1);
-        };
-        interpret osfEndLine {
-            action = RedirectKey(keycode=<END>, clearmodifiers=Mod1);
-        };
-        interpret osfPageUp {
-            action = RedirectKey(keycode=<PGUP>, clearmodifiers=Mod1);
-        };
-        interpret osfPageDown {
-            action = RedirectKey(keycode=<PGDN>, clearmodifiers=Mod1);
-        };
-        interpret osfDelete {
-            action = RedirectKey(keycode=<DELE>, clearmodifiers=Mod1);
-        };
     interpret ISO_Level2_Latch+Exactly(Shift) {
         useModMapMods=level1;
         action= LatchMods(modifiers=Shift,clearLocks,latchToLock);
@@ -796,6 +767,33 @@ xkb_compatibility "complete" {
         virtualModifier= LevelFive;
         useModMapMods=level1;
         action= LockMods(modifiers=LevelFive);
+    };
+    interpret osfLeft+AnyOfOrNone(all) {
+        action= RedirectKey(key=<LEFT>,clearMods= Mod1);
+    };
+    interpret osfRight+AnyOfOrNone(all) {
+        action= RedirectKey(key=<RGHT>,clearMods= Mod1);
+    };
+    interpret osfUp+AnyOfOrNone(all) {
+        action= RedirectKey(key=<UP>,clearMods= Mod1);
+    };
+    interpret osfDown+AnyOfOrNone(all) {
+        action= RedirectKey(key=<DOWN>,clearMods= Mod1);
+    };
+    interpret osfBeginLine+AnyOfOrNone(all) {
+        action= RedirectKey(key=<HOME>,clearMods= Mod1);
+    };
+    interpret osfEndLine+AnyOfOrNone(all) {
+        action= RedirectKey(key=<END>,clearMods= Mod1);
+    };
+    interpret osfPageUp+AnyOfOrNone(all) {
+        action= RedirectKey(key=<PGUP>,clearMods= Mod1);
+    };
+    interpret osfPageDown+AnyOfOrNone(all) {
+        action= RedirectKey(key=<PGDN>,clearMods= Mod1);
+    };
+    interpret osfDelete+AnyOfOrNone(all) {
+        action= RedirectKey(key=<DELE>,clearMods= Mod1);
     };
     interpret Mode_switch+AnyOfOrNone(all) {
         virtualModifier= AltGr;
@@ -1205,7 +1203,7 @@ xkb_compatibility "complete" {
     };
 };
 
-xkb_symbols "pc+us+ru(phonetic):2+inet(evdev)+terminate(ctrl_alt_bksp)" {
+xkb_symbols "pc_us_ru(phonetic)_2_inet(evdev)_terminate(ctrl_alt_bksp)" {
 
     name[group1]="English (US)";
     name[group2]="Russian (phonetic)";
@@ -1243,8 +1241,8 @@ xkb_symbols "pc+us+ru(phonetic):2+inet(evdev)+terminate(ctrl_alt_bksp)" {
         symbols[Group2]= [           equal,            plus ]
     };
     key <BKSP> {
-        type= "CTRL+ALT",
-        symbols[Group1]= [       BackSpace,       BackSpace,        NoSymbol,        NoSymbol, Terminate_Server ]
+        type= "EIGHT_LEVEL_ALPHABETIC",
+        symbols[Group1]= [       BackSpace,       BackSpace,       BackSpace,       BackSpace,       osfDelete,       osfDelete,       osfDelete,       osfDelete ]
     };
     key  <TAB> {         [             Tab,    ISO_Left_Tab ] };
     key <AD01> {
@@ -1278,9 +1276,9 @@ xkb_symbols "pc+us+ru(phonetic):2+inet(evdev)+terminate(ctrl_alt_bksp)" {
         symbols[Group2]= [     Cyrillic_en,     Cyrillic_EN ]
     };
     key <AD07> {
-        type= "ALPHABETIC",
-        symbols[Group1]= [               u,               U ],
-        symbols[Group2]= [    Cyrillic_ghe,    Cyrillic_GHE ]
+        type= "EIGHT_LEVEL_SEMIALPHABETIC",
+        symbols[Group1]= [               u,               U,       downarrow,         uparrow,    osfBeginLine,    osfBeginLine,    osfBeginLine,    osfBeginLine ],
+        symbols[Group2]= [    Cyrillic_ghe,    Cyrillic_GHE,       downarrow,         uparrow,    osfBeginLine,    osfBeginLine,    osfBeginLine,    osfBeginLine ]
     };
     key <AD08> {
         type= "ALPHABETIC",
@@ -1288,14 +1286,14 @@ xkb_symbols "pc+us+ru(phonetic):2+inet(evdev)+terminate(ctrl_alt_bksp)" {
         symbols[Group2]= [    Cyrillic_sha,    Cyrillic_SHA ]
     };
     key <AD09> {
-        type= "ALPHABETIC",
-        symbols[Group1]= [               o,               O ],
-        symbols[Group2]= [  Cyrillic_shcha,  Cyrillic_SHCHA ]
+        type= "EIGHT_LEVEL_ALPHABETIC",
+        symbols[Group1]= [               o,               O,          oslash,          Oslash,      osfEndLine,      osfEndLine,      osfEndLine,      osfEndLine ],
+        symbols[Group2]= [  Cyrillic_shcha,  Cyrillic_SHCHA,          oslash,          Oslash,      osfEndLine,      osfEndLine,      osfEndLine,      osfEndLine ]
     };
     key <AD10> {
-        type= "ALPHABETIC",
-        symbols[Group1]= [               p,               P ],
-        symbols[Group2]= [     Cyrillic_ze,     Cyrillic_ZE ]
+        type= "EIGHT_LEVEL_ALPHABETIC",
+        symbols[Group1]= [               p,               P,           thorn,           THORN,       osfPageUp,       osfPageUp,       osfPageUp,       osfPageUp ],
+        symbols[Group2]= [     Cyrillic_ze,     Cyrillic_ZE,           thorn,           THORN,       osfPageUp,       osfPageUp,       osfPageUp,       osfPageUp ]
     };
     key <AD11> {
         type[group2]= "ALPHABETIC",
@@ -1335,30 +1333,32 @@ xkb_symbols "pc+us+ru(phonetic):2+inet(evdev)+terminate(ctrl_alt_bksp)" {
         symbols[Group2]= [     Cyrillic_pe,     Cyrillic_PE ]
     };
     key <AC06> {
-        type= "ALPHABETIC",
-        symbols[Group1]= [               h,               H ],
-        symbols[Group2]= [     Cyrillic_er,     Cyrillic_ER ]
+        type= "EIGHT_LEVEL_SEMIALPHABETIC",
+        symbols[Group1]= [               h,               H,   dead_belowdot,   dead_abovedot,         osfLeft,         osfLeft,         osfLeft,         osfLeft ],
+        symbols[Group2]= [     Cyrillic_er,     Cyrillic_ER,   dead_belowdot,   dead_abovedot,         osfLeft,         osfLeft,         osfLeft,         osfLeft ]
     };
     key <AC07> {
-        type= "ALPHABETIC",
-        symbols[Group1]= [               j,               J ],
-        symbols[Group2]= [      Cyrillic_o,      Cyrillic_O ]
+        type= "EIGHT_LEVEL_SEMIALPHABETIC",
+        symbols[Group1]= [               j,               J,   dead_belowdot,   dead_abovedot,         osfDown,         osfDown,         osfDown,         osfDown ],
+        symbols[Group2]= [      Cyrillic_o,      Cyrillic_O,   dead_belowdot,   dead_abovedot,         osfDown,         osfDown,         osfDown,         osfDown ]
     };
     key <AC08> {
-        type= "ALPHABETIC",
-        symbols[Group1]= [               k,               K ],
-        symbols[Group2]= [     Cyrillic_el,     Cyrillic_EL ]
+        type= "EIGHT_LEVEL_SEMIALPHABETIC",
+        symbols[Group1]= [               k,               K,             kra,       ampersand,           osfUp,           osfUp,           osfUp,           osfUp ],
+        symbols[Group2]= [     Cyrillic_el,     Cyrillic_EL,             kra,       ampersand,           osfUp,           osfUp,           osfUp,           osfUp ]
     };
     key <AC09> {
-        type= "ALPHABETIC",
-        symbols[Group1]= [               l,               L ],
-        symbols[Group2]= [     Cyrillic_de,     Cyrillic_DE ]
+        type= "EIGHT_LEVEL_ALPHABETIC",
+        symbols[Group1]= [               l,               L,         lstroke,         Lstroke,        osfRight,        osfRight,        osfRight,        osfRight ],
+        symbols[Group2]= [     Cyrillic_de,     Cyrillic_DE,         lstroke,         Lstroke,        osfRight,        osfRight,        osfRight,        osfRight ]
     };
     key <AC10> {
-        symbols[Group1]= [       semicolon,           colon ],
-        symbols[Group2]= [    Cyrillic_zhe,    Cyrillic_ZHE ]
+        type= "EIGHT_LEVEL_SEMIALPHABETIC",
+        symbols[Group1]= [       semicolon,           colon,     doubleacute,     doubleacute,     osfPageDown,     osfPageDown,     osfPageDown,     osfPageDown ],
+        symbols[Group2]= [    Cyrillic_zhe,    Cyrillic_ZHE,     doubleacute,     doubleacute,     osfPageDown,     osfPageDown,     osfPageDown,     osfPageDown ]
     };
     key <AC11> {
+        type[group2]= "ALPHABETIC",
         symbols[Group1]= [      apostrophe,        quotedbl ],
         symbols[Group2]= [      Cyrillic_e,      Cyrillic_E ]
     };
@@ -1409,10 +1409,12 @@ xkb_symbols "pc+us+ru(phonetic):2+inet(evdev)+terminate(ctrl_alt_bksp)" {
         symbols[Group2]= [ Cyrillic_softsign, Cyrillic_SOFTSIGN ]
     };
     key <AB08> {
+        type[group2]= "ALPHABETIC",
         symbols[Group1]= [           comma,            less ],
         symbols[Group2]= [     Cyrillic_be,     Cyrillic_BE ]
     };
     key <AB09> {
+        type[group2]= "ALPHABETIC",
         symbols[Group1]= [          period,         greater ],
         symbols[Group2]= [     Cyrillic_yu,     Cyrillic_YU ]
     };
@@ -1614,7 +1616,7 @@ xkb_symbols "pc+us+ru(phonetic):2+inet(evdev)+terminate(ctrl_alt_bksp)" {
     key <FK23> {         [ XF86TouchpadOff ] };
     key <MDSW> {         [     Mode_switch ] };
     key  <ALT> {         [        NoSymbol,           Alt_L ] };
-    key <META> {         [        NoSymbol,          Meta_L ] };
+    key <META> {         [ ISO_Level5_Shift,          Meta_L ] };
     key <SUPR> {         [        NoSymbol,         Super_L ] };
     key <HYPR> {         [        NoSymbol,         Hyper_L ] };
     key <I208> {         [   XF86AudioPlay ] };
@@ -1628,7 +1630,7 @@ xkb_symbols "pc+us+ru(phonetic):2+inet(evdev)+terminate(ctrl_alt_bksp)" {
     key <I216> {         [ XF86AudioForward ] };
     key <I218> {         [           Print ] };
     key <I220> {         [      XF86WebCam ] };
-    key <I221> {         [ XF86AudioPreset ] };
+    key <I221> {         [        NoSymbol ] };
     key <I223> {         [        XF86Mail ] };
     key <I224> {         [   XF86Messenger ] };
     key <I225> {         [      XF86Search ] };
@@ -1652,8 +1654,8 @@ xkb_symbols "pc+us+ru(phonetic):2+inet(evdev)+terminate(ctrl_alt_bksp)" {
     key <I244> {         [     XF86Battery ] };
     key <I245> {         [   XF86Bluetooth ] };
     key <I246> {         [        XF86WLAN ] };
-    key <I254> {         [        XF86WWAN ] };
-    key <I255> {         [      XF86RFKill ] };
+    key <I254> {         [        NoSymbol ] };
+    key <I255> {         [        NoSymbol ] };
     modifier_map Control { <LCTL> };
     modifier_map Shift { <LFSH> };
     modifier_map Shift { <RTSH> };
@@ -1668,65 +1670,8 @@ xkb_symbols "pc+us+ru(phonetic):2+inet(evdev)+terminate(ctrl_alt_bksp)" {
     modifier_map Mod1 { <META> };
     modifier_map Mod4 { <SUPR> };
     modifier_map Mod4 { <HYPR> };
-	key <META> {
-            symbols[Group1] = [ ISO_Level5_Shift ]
-        };
-        modifier_map Mod1 { <META> };
-        key <AC06> {
-            type[Group1] = "EIGHT_LEVEL_SEMIALPHABETIC",
-            type[Group2] = "EIGHT_LEVEL_SEMIALPHABETIC",
-            symbols[Group1] = [ h, H, dead_belowdot, dead_abovedot, osfLeft, osfLeft, osfLeft, osfLeft ],
-            symbols[Group2]= [     Cyrillic_er,     Cyrillic_ER, dead_belowdot, dead_abovedot, osfLeft, osfLeft, osfLeft, osfLeft ]
-        };
-        key <AC07> {
-            type[Group1] = "EIGHT_LEVEL_SEMIALPHABETIC",
-            type[Group2] = "EIGHT_LEVEL_SEMIALPHABETIC",
-            symbols[Group1] = [ j, J, dead_belowdot, dead_abovedot, osfDown, osfDown, osfDown, osfDown ],
-            symbols[Group2]= [      Cyrillic_o,      Cyrillic_O,  dead_belowdot, dead_abovedot, osfDown, osfDown, osfDown, osfDown]
-        };
-        key <AC08> {
-            type[Group1] = "EIGHT_LEVEL_SEMIALPHABETIC",
-            type[Group2] = "EIGHT_LEVEL_SEMIALPHABETIC",
-            symbols[Group1] = [ k, K, kra, ampersand, osfUp, osfUp, osfUp, osfUp ],
-            symbols[Group2]= [     Cyrillic_el,     Cyrillic_EL, kra, ampersand, osfUp, osfUp, osfUp, osfUp]
-			
-        };
-        key <AC09> {
-            type[Group1] = "EIGHT_LEVEL_ALPHABETIC",
-            type[Group2] = "EIGHT_LEVEL_ALPHABETIC",
-            symbols[Group1] = [ l, L, lstroke, Lstroke, osfRight, osfRight, osfRight, osfRight ],
-            symbols[Group2] = [ Cyrillic_de, Cyrillic_DE, lstroke, Lstroke, osfRight, osfRight, osfRight, osfRight ]
-        };
-        key <AC10> {
-            type[Group1] = "EIGHT_LEVEL_SEMIALPHABETIC",
-            type[Group2] = "EIGHT_LEVEL_SEMIALPHABETIC",
-            symbols[Group1] = [ semicolon, colon, doubleacute, doubleacute, osfPageDown, osfPageDown, osfPageDown, osfPageDown ],
-            symbols[Group2] = [ Cyrillic_zhe, Cyrillic_ZHE, doubleacute, doubleacute, osfPageDown, osfPageDown, osfPageDown, osfPageDown ]
-        };
-        key <AD07> {
-            type[Group1] = "EIGHT_LEVEL_SEMIALPHABETIC",
-            type[Group2] = "EIGHT_LEVEL_SEMIALPHABETIC",
-            symbols[Group1] = [ u, U, downarrow, uparrow, osfBeginLine, osfBeginLine, osfBeginLine, osfBeginLine ],
-            symbols[Group2] = [ Cyrillic_ghe, Cyrillic_GHE, downarrow, uparrow, osfBeginLine, osfBeginLine, osfBeginLine, osfBeginLine ]
-        };
-        key <AD09> {
-            type[Group1] = "EIGHT_LEVEL_ALPHABETIC",
-            type[Group2] = "EIGHT_LEVEL_ALPHABETIC",
-            symbols[Group1] = [ o, O, oslash, Oslash, osfEndLine, osfEndLine, osfEndLine, osfEndLine ],
-            symbols[Group2] = [ Cyrillic_shcha, Cyrillic_SHCHA, oslash, Oslash, osfEndLine, osfEndLine, osfEndLine, osfEndLine ]
-        };
-        key <AD10> {
-            type[Group1] = "EIGHT_LEVEL_ALPHABETIC",
-            type[Group2] = "EIGHT_LEVEL_ALPHABETIC",
-            symbols[Group1] = [ p, P, thorn, THORN, osfPageUp, osfPageUp, osfPageUp, osfPageUp ],
-            symbols[Group2] = [ Cyrillic_ze, Cyrillic_ZE, thorn, THORN, osfPageUp, osfPageUp, osfPageUp, osfPageUp ]
-        };
-        key <BKSP> {
-            type[Group1] = "EIGHT_LEVEL_ALPHABETIC",
-            type[Group2] = "EIGHT_LEVEL_ALPHABETIC",
-            symbols[Group1] = [ BackSpace, BackSpace, BackSpace, BackSpace, osfDelete, osfDelete, osfDelete, osfDelete ] 
-        };
 };
+
 xkb_geometry "pc(pc105)" {
 
     width=       470;

@@ -1,5 +1,9 @@
 " my config
-"set previewoptions+=graphicsdelay:0
+if !has('win')
+    set slowfs=curlftpfs
+endif
+set slowfs+=/rfdyn
+colorscheme ph
 command!  ServerOn  :!sshfs mikhail.bobrovnikov@192.168.251.210:/ ~/remote
 command!  ServerOff  :!sudo fusermount -u ~/remote
 command! dragon dragon-drag-and-drop -a -x %f
@@ -24,7 +28,7 @@ nnoremap <silent> ,p : if &previewprg == ''
                     \| else
                     \|     set previewprg=''
                     \| endif<cr>
-source ~/.local/bin/vifm_devicons/favicons.vifm
+" source ~/.local/bin/vifm_devicons/favicons.vifm
 fileviewer *.pdf
         \ vifmimg pdf %px %py %pw %ph %c
         \ %pc
@@ -89,7 +93,7 @@ set trash
 
 " This is how many directories to store in the directory history.
 
-set history=100
+set history=10000
 
 " Automatically resolve symbolic links on l or Enter.
 

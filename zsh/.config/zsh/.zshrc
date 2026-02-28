@@ -140,12 +140,13 @@ bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
 #bindkey '^I' fzf-completion-widget
 
 bindkey '^[[P' delete-char
-if [[ -n $TMUX ]]; then
-	export NVIM_LISTEN_ADDRESS=/tmp/nvim_$USER_`tmux display -p "#{window_id}"`
-fi
+# if [[ -n $TMUX ]]; then
+# 	export NVIM_LISTEN_ADDRESS=/tmp/nvim_$USER_`tmux display -p "#{window_id}"`
+# fi
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
+set -o ignoreeof
 # zsh parameter completion for the dotnet CLI
 
 _dotnet_zsh_complete()
@@ -180,7 +181,7 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 zstyle ':fzf-tab:complete:cd:*' popup-pad 30 0
-#zstyle ':fzf-tab:*' fzf-flags '--height 100%'
+zstyle ':fzf-tab:*' fzf-flags '--height 100%'
 source /home/gorm/.config/broot/launcher/bash/br 2> /dev/null
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
@@ -190,5 +191,10 @@ case ${TERM} in
           ;;
 esac
 #source "$HOME/.config/zsh/theme.zsh"
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 # To customize prompt, run `p10k configure` or edit ~/.dotfiles/zsh/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.dotfiles/zsh/.config/zsh/.p10k.zsh ]] || source ~/.dotfiles/zsh/.config/zsh/.p10k.zsh
+

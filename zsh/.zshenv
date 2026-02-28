@@ -9,6 +9,18 @@ export PATH=$HOME/proj/go/bin:$PATH
 export PATH=$HOME/.local/bin/vifmimg:$PATH
 export PATH=$HOME/.emacs.d/bin:$PATH
 export PATH=$HOME/.dotnet/tools:$PATH
+export PATH=$HOME/progs/tex-live-install/bin/x86_64-linux:$PATH
+export PATH=$HOME/installed_user/bin:$PATH
+export PATH=$HOME/bin/bin:$PATH
+export PATH=$HOME/bin/go/bin:$PATH
+#Add /home/mikhail.bobrovnikov/progs/tex-live-install/texmf-dist/doc/man to MANPATH.
+#Add /home/mikhail.bobrovnikov/progs/tex-live-install/texmf-dist/doc/info to INFOPATH.
+export MANPATH=$HOME/progs/tex-live-install/texmf-dist/doc/man:$MANPATH
+export INFOPATH=$HOME/progs/tex-live-install/texmf-dist/doc/info:$INFOPATH
+#export PATH=/usr/local/texlive/2021/bin/x86_64-linux:$PATH
+#MANPATH=$MANPATH:/usr/local/texlive/2021/texmf-dist/doc/man
+#INFOPATH=$INFOPATH:/usr/local/texlive/2021/texmf-dist/doc/info
+#export INFOPATH
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -60,4 +72,8 @@ export TEXMFDIST="/usr/share/texmf-dist"
 export CALIBRE_USE_DARK_PALETTE="yes"
 export tNavigator_INTERNALS_CHECK_RESTART=yes
 export tNavigator_INTERNALS_ENABLE_PROFILER=yes
-#. "/home/mikhail.bobrovnikov/.local/share/cargo/env"
+export tNavigator_INTERNALS_ENABLE_MBERR=yes
+export tNavigator_SKIP_MANUALS_CHECK=yes
+if [[ -f "$HOME/.local/share/cargo/env" ]]; then
+  source "$HOME/.local/share/cargo/env"
+fi

@@ -33,3 +33,4 @@
 !xmonad/
 !yay/
 !zsh/
+/neovim/.config/nvim/lazy-lock.json

@@ -1,5 +1,6 @@
 -- Set to `false` to globally disable
 vim.g.snacks_animate = false
+vim.g.clipboard = "osc52"
 
 -- Theme / UI
 vim.o.background = "dark"

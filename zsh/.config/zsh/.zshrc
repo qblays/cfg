@@ -90,6 +90,7 @@ export LC_ALL='en_US.UTF-8'
 export ZSH_TMUX_FORCEUTF8=true
 export SUDO_ASKPASS=${HOME}/.local/bin/rofi_pass
 export GOPATH=${HOME}/proj/go
+export ZSH_SYSTEM_CLIPBOARD_METHOD='tmux'
 
 export tNavigator_INTERNALS_CHECK_RESTART=yes
 

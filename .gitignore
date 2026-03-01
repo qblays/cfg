@@ -33,4 +33,7 @@
 !xmonad/
 !yay/
 !zsh/
+!zsh/**
 /neovim/.config/nvim/lazy-lock.json
+/zsh/.config/zsh/.p10k.zsh
+/zsh/.config/zsh/.zcompdump

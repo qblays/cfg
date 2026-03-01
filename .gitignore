@@ -13,6 +13,7 @@
 !jetbrains/
 !mpv/
 !neovim/
+!neovim/**
 !openbox/
 !other/
 !polybar/

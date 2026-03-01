@@ -3,8 +3,7 @@
 # If you don't plan on reverting to bash, you can remove the link in ~/.profile
 # to clean up.
 
-# Adds `~/.local/bin` to $PATH
-export PATH="$PATH:$(du "$HOME/.local/bin" | cut -f2 | paste -sd ':')"
+export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/proj/go/bin:$PATH
 export PATH=$HOME/.local/bin/vifmimg:$PATH
 export PATH=$HOME/.emacs.d/bin:$PATH

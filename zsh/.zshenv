@@ -4,8 +4,9 @@
 # to clean up.
 
 export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.spec_bin:$PATH
 export PATH=$HOME/proj/go/bin:$PATH
-export PATH=$HOME/.local/bin/vifmimg:$PATH
+export PATH=$HOME/.spec_bin/vifmimg:$PATH
 export PATH=$HOME/.emacs.d/bin:$PATH
 export PATH=$HOME/.dotnet/tools:$PATH
 export PATH=$HOME/progs/tex-live-install/bin/x86_64-linux:$PATH

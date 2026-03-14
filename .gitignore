@@ -3,8 +3,10 @@
 !README.md
 !X/
 !alacritty/
+!alacritty/**
 !awesome/
 !base16-shell/
+!base16-shell/**
 !bspwm/
 !cursor/
 !dunst/
@@ -32,6 +34,7 @@
 !vifm/
 !wp/
 !xmonad/
+!xmonad/**
 !yay/
 !zsh/
 !zsh/**

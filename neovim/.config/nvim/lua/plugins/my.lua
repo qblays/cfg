@@ -46,15 +46,29 @@ return {
     },
   },
 
-  -- Git
   {
     "NeogitOrg/neogit",
+    lazy = true,
     dependencies = {
-      "nvim-lua/plenary.nvim", -- required
-      "sindrets/diffview.nvim", -- optional diff integration
+      -- Only one of these is needed.
+      "sindrets/diffview.nvim",        -- optional
+      "esmuellert/codediff.nvim",      -- optional
+
+      -- For a custom log pager
+      "m00qek/baleia.nvim",            -- optional
+
+      -- Only one of these is needed.
+      "nvim-telescope/telescope.nvim", -- optional
+      "ibhagwan/fzf-lua",              -- optional
+      "nvim-mini/mini.pick",           -- optional
+      "folke/snacks.nvim",             -- optional
     },
-    config = true,
+    cmd = "Neogit",
+    keys = {
+      { "<leader>gg", "<cmd>Neogit<cr>", desc = "Show Neogit UI" }
+    }
   },
+  -- Git
   "tpope/vim-fugitive",
   { "esmuellert/vscode-diff.nvim", dependencies = { "MunifTanjim/nui.nvim" } },
 
@@ -89,48 +103,48 @@ return {
   },
 
   -- delimiters / UI
-  "HiPhish/rainbow-delimiters.nvim",
+  --"HiPhish/rainbow-delimiters.nvim",
 
-  {
-    "shellRaining/hlchunk.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    config = function()
-      require("hlchunk").setup({
-        chunk = {
-          enable = true,
-          chars = {
-            -- Your undo strings showed the quotes but not the actual characters.
-            -- These are reasonable defaults; adjust if you remember different ones.
-            horizontal_line = "─",
-            vertical_line = "│",
-            left_top = "╭",
-            left_bottom = "╰",
-            right_arrow = "▶",
-          },
-          style = "#00ffff",
-          duration = 0,
-          delay = 0,
-        },
-        indent = {
-          enable = false,
-          use_treesitter = false,
-          delay = 0,
-        },
-        line_num = {
-          enable = true,
-          use_treesitter = false,
-          -- Your undo dump also contained a style rainbow list at some point:
-          -- style = {
-          --   "#FF0000", "#FF7F00", "#FFFF00", "#00FF00",
-          --   "#00FFFF", "#0000FF", "#8B00FF",
-          -- },
-        },
-        blank = {
-          enable = false,
-        },
-      })
-    end,
-  },
+  --{
+  --  "shellRaining/hlchunk.nvim",
+  --  event = { "BufReadPre", "BufNewFile" },
+  --  config = function()
+  --    require("hlchunk").setup({
+  --      chunk = {
+  --        enable = true,
+  --        chars = {
+  --          -- Your undo strings showed the quotes but not the actual characters.
+  --          -- These are reasonable defaults; adjust if you remember different ones.
+  --          horizontal_line = "─",
+  --          vertical_line = "│",
+  --          left_top = "╭",
+  --          left_bottom = "╰",
+  --          right_arrow = "▶",
+  --        },
+  --        style = "#00ffff",
+  --        duration = 0,
+  --        delay = 0,
+  --      },
+  --      indent = {
+  --        enable = false,
+  --        use_treesitter = false,
+  --        delay = 0,
+  --      },
+  --      line_num = {
+  --        enable = true,
+  --        use_treesitter = false,
+  --        -- Your undo dump also contained a style rainbow list at some point:
+  --        -- style = {
+  --        --   "#FF0000", "#FF7F00", "#FFFF00", "#00FF00",
+  --        --   "#00FFFF", "#0000FF", "#8B00FF",
+  --        -- },
+  --      },
+  --      blank = {
+  --        enable = false,
+  --      },
+  --    })
+  --  end,
+  --},
 
   -- big files
   {
@@ -165,12 +179,15 @@ return {
       },
     },
     keys = {
-      {
-        "ff",
-        function()
-          require("fff").find_files()
-        end,
-        desc = "FFFind files",
+      { "ff", function() require('fff').find_files() end, desc = 'FFFind files' },
+      { "fg", function() require('fff').live_grep() end, desc = 'LiFFFe grep' },
+      { "fz",
+        function() require('fff').live_grep({ grep = { modes = { 'fuzzy', 'plain' } } }) end,
+        desc = 'Live fffuzy grep',
+      },
+      { "fc",
+        function() require('fff').live_grep({ query = vim.fn.expand("<cword>") }) end,
+        desc = 'Search current word',
       },
     },
   },

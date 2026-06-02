@@ -17,6 +17,7 @@ end)
 -- Diff options (you had multiple variants; last one in your dump was inline:word)
 -- vim.opt.diffopt = "filler,internal,closeoff,algorithm:histogram,context:5,linematch:60,"
 vim.opt.diffopt = "filler,internal,closeoff,algorithm:histogram,context:5,linematch:60,inline:word"
+vim.g.autoformat = false
 
 -- Earlier variants seen in your undo-strings (kept here for reference):
 -- vim.o.diffopt = "internal,filler,closeoff,linematch:60"

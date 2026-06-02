@@ -511,6 +511,10 @@ nnoremap <f6> :move<cr>
 nnoremap <f7> :mkdir<space>
 nnoremap <f8> :delete<cr>
 
+" Copy full path of current file to clipboard through OSC52
+"nnoremap <silent> yf :!printf '\033]52;c;%%s\a' "$(printf '%%s' %c:p | base64 | tr -d '\n')" > /dev/tty %i<cr>:echo expand('%"c:p') . " copied via OSC52"<cr>
+nnoremap <wait> yf :!printf '\033]52;c;%%s\a' "$(printf '%%s' %c:p | base64 | tr -d '\n')" > /dev/tty<cr>
+
 " ------------------------------------------------------------------------------
 
 " Various customization examples

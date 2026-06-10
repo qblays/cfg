@@ -14,6 +14,15 @@ export PATH=$HOME/installed_user/bin:$PATH
 export PATH=$HOME/bin/bin:$PATH
 export PATH=$HOME/bin/go/bin:$PATH
 export PATH=$HOME/.local/share/cargo/bin:$PATH
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.config/emacs/bin:$PATH"
+# WSL
+#export MESA_D3D12_DEFAULT_ADAPTER_NAME=NVIDIA
+#export GALLIUM_DRIVER=d3d12
+#export DISPLAY="127.0.0.1:0.0"
+#export DISPLAY=$(ip route | awk '/^default/ {print $3; exit}'):0.0
+#
+
 #Add /home/mikhail.bobrovnikov/progs/tex-live-install/texmf-dist/doc/man to MANPATH.
 #Add /home/mikhail.bobrovnikov/progs/tex-live-install/texmf-dist/doc/info to INFOPATH.
 export MANPATH=$HOME/progs/tex-live-install/texmf-dist/doc/man:$MANPATH
